@@ -109,8 +109,8 @@ constant GETYPR($0028) //  Function: Return Type Of DAC (Decimal Accumulator)
 constant  CALLF($0030) //  Function: Call Routine In Another Slot
                        //            The Following Is The Call Sequence:
                        //            RST 30H
-                       //            DB	n	; n is the slot number (same as RDSLT)
-                       //            DW	nn	; nn is the called address
+                       //            DB	n	; n Is The Slot Number (Aame As RDSLT)
+                       //            DW	nn	; nn Is The Called Address
                        //     Input: The Method Described Above
                        //    Output: Depends On Called Routine
                        // Registers: AF, Other Registers Depend On Called Routine
@@ -216,7 +216,7 @@ constant LDIRVM($005C) //  Function: Block Transfer From Memory To VRAM
                        // Registers: ALL
                        // Available: MSX (Do Not Call SUB-ROM While Screen Modes 4..8 Are Changed)
 
-constant CHGMOD($005F) //  Function: Changes Screen Mode
+constant CHGMOD($005F) //  Function: Change Screen Mode
                        //            Palette Is Not Initialised
                        //            To Initialise Palette Call CHGMDP In SUB-ROM After This Call
                        //     Input: A = Screen Mode (0..8)
@@ -424,15 +424,15 @@ constant LPTOUT($00A5) //  Function: Send A Character To The Printer
 constant LPTSTT($00A8) //  Function: Test Printer Status
                        //     Input: NONE
                        //    Output: IF (A == 255) && (Z Flag Reset), Printer Is READY
-		       //            IF (A == 0) && (Z Flag Set), Printer Is NOT READY
+                       //            IF (A == 0) && (Z Flag Set), Printer Is NOT READY
                        // Registers: AF
                        // Available: MSX
 
 constant CNVCHR($00AB) //  Function: Test Graphic Header & Transform The Code
                        //     Input: A = Character Code
                        //    Output: IF NOT Graphic Header CY Flag Reset
-		       //            CY Flag Set, & Z Flag Set To The Transformed Code Set In A
-		       //            CY Flag Set, & CY Flag is Reset To The Utransformed Code Set In A
+                       //            CY Flag Set, & Z Flag Set To The Transformed Code Set In A
+                       //            CY Flag Set, & CY Flag is Reset To The Utransformed Code Set In A
                        // Registers: AF
                        // Available: MSX
 
@@ -578,8 +578,8 @@ constant TAPOOF($00F0) //  Function: Stop Writing Data To Tape
 
 constant STMOTR($00F3) //  Function: Set Cassette Motor Action
                        //     Input: IF (A == $00) Stop
-		       //            IF (A == $01) Start
-		       //            IF (A == $FF) Reverse Current Action
+                       //            IF (A == $01) Start
+                       //            IF (A == $FF) Reverse Current Action
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX
@@ -595,7 +595,7 @@ constant CHGCAP($0132) //  Function: Alternate CAP Lamp Status
 
 constant CHGSND($0135) //  Function: Alternate 1-Bit Sound Port Status
                        //     Input: IF (A == 0) Sound Port OFF
-		       //            IF (A != 0) Sound Port ON
+                       //            IF (A != 0) Sound Port ON
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX
@@ -628,7 +628,7 @@ constant PHYDIO($0144) //  Function: Physical Input/Output For Disk Devices
                        //     Input:  A = Drive Number (0 = A:, 1 = B:,...)
                        //             B = Number Of Sector To Be Read From Or Written To
                        //             C = Media ID
-		       //            DE = First Sector Number To Be Read From Or Written To
+                       //            DE = First Sector Number To Be Read From Or Written To
                        //            HL = Starting Address Of RAM Buffer To Be Read From Or Written To Specified Sectors
 		       //            CY Set For Sector Writing, CY Reset For Sector Reading
                        //    Output: CY Set IF Failed
@@ -742,8 +742,8 @@ constant  GRPRT($0089) //  Function: Display A Character On The Graphic Screen (
 
 constant NVBXLN($00C9) //  Function: Draw A Box
                        //     Input: Start Point: BC = X-Coordinate, DE = Y-Coordinate
-		       //              End Point:  GXPOS ($FCB3) = X-Coordinate, GYPOS ($FCB5) = Y-Coordinate
-		       //                  Color: ATRBYT ($F3F3) = Attribute
+                       //              End Point:  GXPOS ($FCB3) = X-Coordinate, GYPOS ($FCB5) = Y-Coordinate
+                       //                  Color: ATRBYT ($F3F3) = Attribute
                        // Logical Operation Code: LOGOPR ($FB02) = Code
                        //    Output: NONE
                        // Registers: ALL
@@ -751,122 +751,122 @@ constant NVBXLN($00C9) //  Function: Draw A Box
 
 constant NVBXFL($00CD) //  Function: Draw Filled Box
                        //     Input: Start Point: BC = X-Coordinate, DE = Y-Coordinate
-		       //              End Point:  GXPOS ($FCB3) = X-Coordinate, GYPOS ($FCB5) = Y-Coordinate
-		       //                  Color: ATRBYT ($F3F3) = Attribute
-		       // Logical Operation Code: LOGOPR ($FB02) = Code
+                       //              End Point:  GXPOS ($FCB3) = X-Coordinate, GYPOS ($FCB5) = Y-Coordinate
+                       //                  Color: ATRBYT ($F3F3) = Attribute
+                       // Logical Operation Code: LOGOPR ($FB02) = Code
                        //    Output: NONE
                        // Registers: ALL
                        // Available: MSX2
 
-constant  CHGMO($00D1) //  Function: Change Screen Mode (Same As CHGMOD In MAIN-ROM)
-                       //     Input: A = Screen Mode (0..8)
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant CHGMODB($00D1) //  Function: Change Screen Mode (Same As CHGMOD In MAIN-ROM)
+                        //     Input: A = Screen Mode (0..8)
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  INITX($00D5) //  Function: Initialise Screen To TEXT1 Mode (40x24) (Same As INITXT In MAIN-ROM)
-                       //     Input: TXTNAM ($F3B3) = Pattern Name Table
-		       //            TXTCGP ($F3B7) = Pattern Generator Table
-		       //            LINL40 ($F3AE) = Length Of Line
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant INITXTB($00D5) //  Function: Initialise Screen To TEXT1 Mode (40x24) (Same As INITXT In MAIN-ROM)
+                        //     Input: TXTNAM ($F3B3) = Pattern Name Table
+                        //            TXTCGP ($F3B7) = Pattern Generator Table
+                        //            LINL40 ($F3AE) = Length Of Line
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  INI32($00D9) //  Function: Initialise Screen To GRAPHIC1 Mode (32x24) (Same As INIT32 In MAIN-ROM)
-                       //     Input: T32NAM ($F3BD) = Pattern Name Table
-		       //            T32COL ($F3BF) = Color Table
-		       //            T32CGP ($F3C1) = Pattern Generator Table
-		       //            T32ATR ($F3C3) = Sprite Attribute Table
-		       //            T32PAT ($F3C5) = Sprite Generator Table
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant INIT32B($00D9) //  Function: Initialise Screen To GRAPHIC1 Mode (32x24) (Same As INIT32 In MAIN-ROM)
+                        //     Input: T32NAM ($F3BD) = Pattern Name Table
+                        //            T32COL ($F3BF) = Color Table
+                        //            T32CGP ($F3C1) = Pattern Generator Table
+                        //            T32ATR ($F3C3) = Sprite Attribute Table
+                        //            T32PAT ($F3C5) = Sprite Generator Table
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  INIGR($00DD) //  Function: Initialise Screen To High-Resolution Graphics Mode (Same As INIGRP In MAIN-ROM)
-                       //     Input: GRPNAM ($F3C7) = Pattern Name Table
-		       //            GRPCOL ($F3C9) = Color Table
-		       //            GRPCGP ($F3CB) = Pattern Generator Table
-		       //            GRPATR ($F3CD) = Sprite Attribute Table
-		       //            GRPPAT ($F3CF) = Sprite Generator Table
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant INIGRPB($00DD) //  Function: Initialise Screen To High-Resolution Graphics Mode (Same As INIGRP In MAIN-ROM)
+                        //     Input: GRPNAM ($F3C7) = Pattern Name Table
+                        //            GRPCOL ($F3C9) = Color Table
+                        //            GRPCGP ($F3CB) = Pattern Generator Table
+                        //            GRPATR ($F3CD) = Sprite Attribute Table
+                        //            GRPPAT ($F3CF) = Sprite Generator Table
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  INIML($00E1) //  Function: Initialise Screen To MULTI COLOR Mode (Same As INIMLT In MAIN-ROM)
-                       //     Input: MLTNAM ($F3D1) = Pattern Name Table
-		       //            MLTCOL ($F3D3) = Color Table
-		       //            MLTCGP ($F3D5) = Pattern Generator Table
-		       //            MLTATR ($F3D7) = Sprite Attribute Table
-		       //            MLTPAT ($F3D9) = Sprite Generator Table
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant INIMLTB($00E1) //  Function: Initialise Screen To MULTI COLOR Mode (Same As INIMLT In MAIN-ROM)
+                        //     Input: MLTNAM ($F3D1) = Pattern Name Table
+                        //            MLTCOL ($F3D3) = Color Table
+                        //            MLTCGP ($F3D5) = Pattern Generator Table
+                        //            MLTATR ($F3D7) = Sprite Attribute Table
+                        //            MLTPAT ($F3D9) = Sprite Generator Table
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  SETTX($00E5) //  Function: Set VDP To Text Mode (40x24) (Same As SETTXT In MAIN-ROM)
-                       //     Input: TXTNAM ($F3B3) = Pattern Name Table
-		       //            TXTCGP ($F3B7) = Pattern Generator Table
-		       //            LINL40 ($F3AE) = Length Of Line
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant SETTXTB($00E5) //  Function: Set VDP To Text Mode (40x24) (Same As SETTXT In MAIN-ROM)
+                        //     Input: TXTNAM ($F3B3) = Pattern Name Table
+                        //            TXTCGP ($F3B7) = Pattern Generator Table
+                        //            LINL40 ($F3AE) = Length Of Line
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  SET32($00E9) //  Function: Set VDP To Text Mode (32x24) (Same As SETT32 In MAIN-ROM)
-                       //     Input: T32NAM ($F3BD) = Pattern Name Table
-		       //            T32COL ($F3BF) = Color Table
-		       //            T32CGP ($F3C1) = Pattern Generator Table
-		       //            T32ATR ($F3C3) = Sprite Attribute Table
-		       //            T32PAT ($F3C5) = Sprite Generator Table
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant SETT32B($00E9) //  Function: Set VDP To Text Mode (32x24) (Same As SETT32 In MAIN-ROM)
+                        //     Input: T32NAM ($F3BD) = Pattern Name Table
+                        //            T32COL ($F3BF) = Color Table
+                        //            T32CGP ($F3C1) = Pattern Generator Table
+                        //            T32ATR ($F3C3) = Sprite Attribute Table
+                        //            T32PAT ($F3C5) = Sprite Generator Table
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  SETGR($00ED) //  Function: Set VDP To High-Resolution Mode (Same As SETGRP In MAIN-ROM)
-                       //     Input: GRPNAM ($F3C7) = Pattern Name Table
-		       //            GRPCOL ($F3C9) = Color Table
-		       //            GRPCGP ($F3CB) = Pattern Generator Table
-		       //            GRPATR ($F3CD) = Sprite Attribute Table
-		       //            GRPPAT ($F3CF) = Sprite Generator Table
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant SETGRPB($00ED) //  Function: Set VDP To High-Resolution Mode (Same As SETGRP In MAIN-ROM)
+                        //     Input: GRPNAM ($F3C7) = Pattern Name Table
+                        //            GRPCOL ($F3C9) = Color Table
+                        //            GRPCGP ($F3CB) = Pattern Generator Table
+                        //            GRPATR ($F3CD) = Sprite Attribute Table
+                        //            GRPPAT ($F3CF) = Sprite Generator Table
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  SETML($00F1) //  Function: Set VDP To MULTI COLOR Mode (Same As SETMLT In MAIN-ROM)
-                       //     Input: MLTNAM ($F3D1) = Pattern Name Table
-		       //            MLTCOL ($F3D3) = Color Table
-		       //            MLTCGP ($F3D5) = Pattern Generator Table
-		       //            MLTATR ($F3D7) = Sprite Attribute Table
-		       //            MLTPAT ($F3D9) = Sprite Generator Table
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant SETMLTB($00F1) //  Function: Set VDP To MULTI COLOR Mode (Same As SETMLT In MAIN-ROM)
+                        //     Input: MLTNAM ($F3D1) = Pattern Name Table
+                        //            MLTCOL ($F3D3) = Color Table
+                        //            MLTCGP ($F3D5) = Pattern Generator Table
+                        //            MLTATR ($F3D7) = Sprite Attribute Table
+                        //            MLTPAT ($F3D9) = Sprite Generator Table
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  CLRSP($00F5) //  Function: Initialise All Sprites (Same As CLRSPR In MAIN-ROM)
-                       //            Sprite Pattern Cleared To Zero, Sprite Number To Sprite Plane Number
-                       //            Sprite Color To Foreground Color
-                       //            Sprite Vertical Location Set To 209 (Mode 0..3) Or 217 (Mode 4..8)
-                       //     Input: SCRMOD ($FCAF) = Screen Mode
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant CLRSPRB($00F5) //  Function: Initialise All Sprites (Same As CLRSPR In MAIN-ROM)
+                        //            Sprite Pattern Cleared To Zero, Sprite Number To Sprite Plane Number
+                        //            Sprite Color To Foreground Color
+                        //            Sprite Vertical Location Set To 209 (Mode 0..3) Or 217 (Mode 4..8)
+                        //     Input: SCRMOD ($FCAF) = Screen Mode
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  CALPA($00F9) //  Function: Return Address Of Sprite Generator Table (Same As CALPAT In MAIN-ROM)
-                       //     Input:  A = Sprite Number
-                       //    Output: HL = Returned Address
-                       // Registers: AF, DE, HL
-                       // Available: MSX2
+constant CALPATB($00F9) //  Function: Return Address Of Sprite Generator Table (Same As CALPAT In MAIN-ROM)
+                        //     Input:  A = Sprite Number
+                        //    Output: HL = Returned Address
+                        // Registers: AF, DE, HL
+                        // Available: MSX2
 
-constant  CALAT($00FD) //  Function: Return Address Of Sprite Attribute Table (Same As CALATR In MAIN-ROM)
-                       //     Input:  A = Sprite Number
-                       //    Output: HL = Returned Address
-                       // Registers: AF, DE, HL
-                       // Available: MSX2
+constant CALATRB($00FD) //  Function: Return Address Of Sprite Attribute Table (Same As CALATR In MAIN-ROM)
+                        //     Input:  A = Sprite Number
+                        //    Output: HL = Returned Address
+                        // Registers: AF, DE, HL
+                        // Available: MSX2
 
-constant  GSPSI($0101) //  Function: Return Current Sprite Size (Same As GSPSIZ In MAIN-ROM)
-                       //     Input: NONE
-                       //    Output: A = Sprite Size (In Bytes)
-                       //            CY Flag Set IF (Size == 16x16), ELSE CY Flag Reset
-                       // Registers: AF
-                       // Available: MSX2
+constant GSPSIZB($0101) //  Function: Return Current Sprite Size (Same As GSPSIZ In MAIN-ROM)
+                        //     Input: NONE
+                        //    Output: A = Sprite Size (In Bytes)
+                        //            CY Flag Set IF (Size == 16x16), ELSE CY Flag Reset
+                        // Registers: AF
+                        // Available: MSX2
 
 constant GETPAT($0105) //  Function: Return Character Pattern
                        //     Input: A = Character Code
@@ -874,26 +874,26 @@ constant GETPAT($0105) //  Function: Return Character Pattern
                        // Registers: ALL
                        // Available: MSX2
 
-constant  WRTVR($0109) //  Function: Write Data To VRAM (Same As WRTVRM In MAIN-ROM)
-                       //     Input: HL = VRAM Address ($0000..$FFFF), A = Data To Be Written
-                       //    Output: NONE
-                       // Registers: AF
-                       // Available: MSX2
+constant WRTVRMB($0109) //  Function: Write Data To VRAM (Same As WRTVRM In MAIN-ROM)
+                        //     Input: HL = VRAM Address ($0000..$FFFF), A = Data To Be Written
+                        //    Output: NONE
+                        // Registers: AF
+                        // Available: MSX2
 
-constant   RDVR($010D) //  Function: Read Contents Of VRAM (Same As RDVRM In MAIN-ROM)
+constant RDVRMB($010D) //  Function: Read Contents Of VRAM (Same As RDVRM In MAIN-ROM)
                        //     Input: HL = VRAM Address ($0000..$FFFF) To Be Read
                        //    Output: A = Value Which Was Read
                        // Registers: AF
                        // Available: MSX2
 
-constant  CHGCL($0111) //  Function: Change Screen Color (Same As CHGCLR In MAIN-ROM)
-                       //     Input: A = Screen Mode
-                       //            FORCLR ($F3E9) = Foreground Color
-                       //            BAKCLR ($F3EA) = Background Color
-                       //            BDRCLR ($F3EB) = Border Color
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant CHGCLRB($0111) //  Function: Change Screen Color (Same As CHGCLR In MAIN-ROM)
+                        //     Input: A = Screen Mode
+                        //            FORCLR ($F3E9) = Foreground Color
+                        //            BAKCLR ($F3EA) = Background Color
+                        //            BDRCLR ($F3EB) = Border Color
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
 constant CLSSUB($0115) //  Function: Clear Screen
                        //     Input: NONE
@@ -901,17 +901,17 @@ constant CLSSUB($0115) //  Function: Clear Screen
                        // Registers: ALL
                        // Available: MSX2
 
-constant  DSPFN($011D) //  Function: Display Function Keys (Same As DSPFNK In MAIN-ROM)
-                       //     Input: NONE
-                       //    Output: NONE
-                       // Registers: ALL
-                       // Available: MSX2
+constant DSPFNKB($011D) //  Function: Display Function Keys (Same As DSPFNK In MAIN-ROM)
+                        //     Input: NONE
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
 
-constant  WRTVD($012D) //  Function: Write Data To VDP Register (Same As WRTVDP In MAIN-ROM)
-                       //     Input: C = VDP Register Number (0..23, 32..46), B = Data To Be Written
-                       //    Output: NONE
-                       // Registers: AF, BC
-                       // Available: MSX2
+constant WRTVDPB($012D) //  Function: Write Data To VDP Register (Same As WRTVDP In MAIN-ROM)
+                        //     Input: C = VDP Register Number (0..23, 32..46), B = Data To Be Written
+                        //    Output: NONE
+                        // Registers: AF, BC
+                        // Available: MSX2
 
 constant VDPSTA($0131) //  Function: Read Data From VDP Register
                        //     Input: A = Register Number (0..9)
@@ -953,7 +953,7 @@ constant SETPLT($014D) //  Function: Sets Colour Code To Palette
                        // Registers: AF
                        // Available: MSX2
 
-constant  BEEP2($017D) //  Function: Generate BEEP (Same As BEEP In MAIN-ROM)
+constant  BEEPB($017D) //  Function: Generate BEEP (Same As BEEP In MAIN-ROM)
                        //     Input: NONE
                        //    Output: NONE
                        // Registers: ALL
