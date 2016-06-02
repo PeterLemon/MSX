@@ -216,7 +216,7 @@ constant LDIRVM($005C) //  Function: Block Transfer From Memory To VRAM
                        // Registers: ALL
                        // Available: MSX (Do Not Call SUB-ROM While Screen Modes 4..8 Are Changed)
 
-constant CHGMOD($005F) //  Function: Changes Screen Mode
+constant CHGMOD($005F) //  Function: Change Screen Mode
                        //            Palette Is Not Initialised
                        //            To Initialise Palette Call CHGMDP In SUB-ROM After This Call
                        //     Input: A = Screen Mode (0..8)
