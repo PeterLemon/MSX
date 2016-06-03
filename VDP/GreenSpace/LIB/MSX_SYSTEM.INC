@@ -2,7 +2,7 @@
 // MSX System Routines
 //=====================
 // BIOS LISTING
-// This Section Lists 126 BIOS Entries Available To The User
+// This Section Lists BIOS Entries Available To The User
 // There Are 2 Kinds Of BIOS Routines: "MAIN-ROM" & "SUB-ROM"
 // Routines In MAIN-ROM Use "CALL" Or "RTS" Instruction As A Subroutine Call
 // The Call Sequence Of SUB-ROM Is As Follows:
@@ -42,7 +42,7 @@ constant SYNCHR($0008) //  Function: Test IF Character In [HL] Is Specified
 constant  RDSLT($000C) //  Function: Selects Slot Corresponding To Value In A & Read 1 Byte From Slot Memory
                        //            When Routine Is Called, Interrupt Is Inhibited Even After Execution Ends
                        //     Input:  A = Slot Number: %F000EEBB - F = Basic(0) Expansion(1),
-                       //            BB = Basic Slot Number(0..3), EE = Expansion Slot Number(0..3)
+                       //            EE = Expansion Slot Number(0..3), BB = Basic Slot Number(0..3)
                        //            HL = Address Of Memory To Be Read
                        //    Output: Value Of Memory Read From A
                        // Registers: AF, BC, DE
@@ -58,7 +58,7 @@ constant CHRGTR($0010) //  Function: Get A Character (Or Token) From BASIC Text
 constant  WRSLT($0014) //  Function: Select Slot Corresponding To Value In A & Write 1 Byte To Slot Memory
                        //            When Routine Is Called, Interrupt Is Inhibited Even After Execution Ends
                        //     Input:  A = Slot Number: %F000EEBB - F = Basic(0) Expansion(1),
-                       //            BB = Basic Slot Number(0..3), EE = Expansion Slot Number(0..3)
+                       //            EE = Expansion Slot Number(0..3), BB = Basic Slot Number(0..3)
                        //            HL = Address Of Memory To Be Read
                        //    Output: NONE
                        // Registers: AF, BC, D
@@ -74,7 +74,7 @@ constant  OUTDO($0018) //  Function: Send Value To Current Device
 
 constant CALSLT($001C) //  Function: Call Routine In Another Slot (Inter-Slot Call)
                        //     Input: IYH = Slot Number: %F000EEBB - F = Basic(0) Expansion(1),
-                       //             BB = Basic Slot Number(0..3), EE = Expansion Slot Number(0..3)
+                       //             EE = Expansion Slot Number(0..3), BB = Basic Slot Number(0..3)
                        //             IX = Address To Be Called
                        //    Output: Depends On Called Routine
                        // Registers: Depends On Called Routine
@@ -89,7 +89,7 @@ constant DCOMPR($0020) //  Function: Compare Contents Of HL & DE
 constant ENASLT($0024) //  Function: Select Slot Corresponding To Value In A & Enable Slot To Be Used
                        //            When Routine Is Called, Interrupt Is Inhibited Even After Execution Ends
                        //     Input:  A = Slot Number: %F000EEBB - F = Basic(0) Expansion(1),
-                       //            BB = Basic Slot Number(0..3), EE = Expansion Slot Number(0..3)
+                       //            EE = Expansion Slot Number(0..3), BB = Basic Slot Number(0..3)
                        //            HL = Slot Page: 2 High Order Bits
                        //    Output: NONE
                        // Registers: ALL
@@ -460,9 +460,21 @@ constant QINLIN($00B4) //  Function: Store To Specified Buffer Character Code In
                        // Registers: ALL
                        // Available: MSX
 
-constant BREAKX($00B7) //  Function: Test Ctrl-STOP Key, Interrupts Are Inhibited
+constant BREAKX($00B7) //  Function: Test CTRL-STOP Key, Interrupts Are Inhibited
                        //     Input: NONE
-                       //    Output: CY Flag Set IF Ctrl-STOP Key Pressed
+                       //    Output: CY Flag Set IF CTRL-STOP Key Pressed
+                       // Registers: AF
+                       // Available: MSX
+
+constant ISCNTC($00BA) //  Function: Test SHIFT-STOP Key, Interrupts Are Inhibited
+                       //     Input: NONE
+                       //    Output: CY Flag Set IF SHIFT-STOP Key Pressed
+                       // Registers: AF
+                       // Available: MSX
+
+constant CKCNTC($00BD) //  Function: Test SHIFT-STOP Key, Interrupts Are Inhibited (Same As ISCNTC, Used In BASIC)
+                       //     Input: NONE
+                       //    Output: CY Flag Set IF SHIFT-STOP Key Pressed
                        // Registers: AF
                        // Available: MSX
 
@@ -537,9 +549,9 @@ constant  GTPDL($00DE) //  Function: Return Paddle Value
                        // Registers: ALL
                        // Available: MSX (Call SUB-ROM Internally In Screen Modes 5..8)
 
-//==============================
-//Cassette Input-Output Routine
-//==============================
+//================================
+// Cassette Input-Output Routines
+//================================
 constant TAPION($00E1) //  Function: Read Header Block After Turning Cassette Motor ON
                        //     Input: NONE
                        //    Output: CY Flag Set IF Failed
@@ -582,6 +594,134 @@ constant STMOTR($00F3) //  Function: Set Cassette Motor Action
                        //            IF (A == $FF) Reverse Current Action
                        //    Output: NONE
                        // Registers: AF
+                       // Available: MSX
+
+//================
+// Queue Routines
+//================
+constant   LFTQ($00F6) //  Function: Gives Number Of Bytes In Queue (Internal Use)
+                       //     Input: NONE
+                       //    Output: A = Length Of Queue In Bytes
+                       // Registers: AF
+                       // Available: MSX
+
+constant   PUTQ($00F9) //  Function: Put Byte In Queue (Internal Use)
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+//==================
+// Graphic Routines
+//==================
+constant RIGHTC($00FC) //  Function: Shift Screenpixel Right
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: AF
+                       // Available: MSX
+
+constant  LEFTC($00FF) //  Function: Shift Screenpixel Left
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: AF
+                       // Available: MSX
+
+constant    UPC($0102) //  Function: Shift Screenpixel Up
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: AF
+                       // Available: MSX
+
+constant   TUPC($0105) //  Function: Test Whether UPC Is possible, IF Possible, Execute UPC
+                       //     Input: NONE
+                       //    Output: CY Flag Set IF Operation Would End Outside Screen
+                       // Registers: AF
+                       // Available: MSX
+
+constant  DOWNC($0108) //  Function: Shift Screenpixel Down
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: AF
+                       // Available: MSX
+
+constant TDOWNC($010B) //  Function: Test Whether DOWNC Is possible, IF Possible, Execute DOWNC
+                       //     Input: NONE
+                       //    Output: CY Flag Set IF Operation Would End Outside Screen
+                       // Registers: AF
+                       // Available: MSX
+
+constant SCALXY($010E) //  Function: Scale X & Y Coordinates
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant  MAPXY($0111) //  Function: Place Cursor At Current Cursor Address
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant FETCHC($0114) //  Function: Get Current Cursor Addresses Mask Pattern
+                       //     Input: NONE
+                       //    Output: HL = Cursor Address
+                       //             A = Mask Pattern
+                       // Registers: NONE
+                       // Available: MSX
+
+constant STOREC($0117) //  Function: Record Current Cursor Addresses Mask Pattern
+                       //     Input: HL = Cursor Address
+                       //             A = Mask Pattern
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant SETATR($011A) //  Function: Set Attribute Byte
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant  READC($011D) //  Function: Read Attribute Byte
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant   SETC($0120) //  Function: Return Current Screenpixel Of Specificed Attribute Byte
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant NSETCX($0123) //  Function: Set Horizontal Screenpixels
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant GTASPC($0126) //  Function: Get Screen Relations
+                       //     Input: NONE
+                       //    Output: DE, HL
+                       // Registers: DE, HL
+                       // Available: MSX
+
+constant PNTINI($0129) //  Function: Initalises PAINT Instruction
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant  SCANR($012C) //  Function: Scan Screenpixels Right
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX
+
+constant  SCANL($012F) //  Function: Scan Screenpixels Left
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: NONE
                        // Available: MSX
 
 //===============
@@ -646,6 +786,12 @@ constant PHYDIO($0144) //  Function: Physical Input/Output For Disk Devices
                        // Registers: ALL
                        // Available: MSX
 
+constant FORMAT($0147) //  Function: Initialises Mass-Storage Media Like Formatting Of Diskettes
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX (In Minimum Configuration Only A HOOK Is Available)
+
 constant ISFLIO($014A) //  Function: Test Whether Device Is Active
                        //     Input: NONE
                        //    Output: IF (A == 0) Active
@@ -661,6 +807,18 @@ constant OUTDLP($014D) //  Function: Printer Output, Different From LPTOUT In Th
                        //     Input: A = Data
                        //    Output: NONE
                        // Registers: F
+                       // Available: MSX
+
+constant GETVCP($0150) //  Function: Return Pointer To Play Queue (Only Used To Play Music In Background)
+                       //     Input: A = Channel Number
+                       //    Output: HL = Pointer
+                       // Registers: AF
+                       // Available: MSX
+
+constant GETVC2($0153) //  Function: Return Pointer To Variable In Queue Number VOICEN (Byte Op $FB38)
+                       //     Input: L = Pointer In Play Buffer
+                       //    Output: HL = Pointer
+                       // Registers: AF
                        // Available: MSX
 
 constant KILBUF($0156) //  Function: Clear Keyboard Buffer
@@ -688,6 +846,18 @@ constant EXTROM($015F) //  Function: Execute Inter-Slot Call To SUB-ROM
                        //     Input: IX For The Call Address
                        //    Output: Depends On Called Routine
                        // Registers: Background Registers & IY Are Reserved
+                       // Available: MSX2
+
+constant CHKSLZ($0162) //  Function: Search Slots For SUB-ROM
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
+constant CHKNEW($0165) //  Function: Test Screen Mode
+                       //     Input: NONE
+                       //    Output: CY Flag Set IF Screenmode = 5, 6, 7 Or 8 
+                       // Registers: AF
                        // Available: MSX2
 
 constant    EOL($0168) //  Function: Delete To End Of Line
@@ -730,6 +900,59 @@ constant NWRVRM($0177) //  Function: Writes Data In VRAM
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX2
+
+//============================
+// Entries Appended For MSX2+
+//============================
+constant RDBTST($017A) //  Function: Read Value Of I/O Port $F4
+                       //     Input: NONE
+                       //    Output: A = Value Read
+                       // Registers: AF
+                       // Available: MSX2+
+
+constant WRBTST($017D) //  Function: Write Value To I/O Port $F4
+                       //     Input: A = Value To Write (Bit 7 = Show MSX2+ Startup Screen(0), Skipped(1))
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX2+
+
+//==================================
+// Entries Appended For MSX Turbo-R
+//==================================
+constant CHGCPU($0180) //  Function: Change CPU Mode
+                       //     Input: A = %L00000MM: L = LED (Indicates IF Turbo LED Is Switched With CPU Mode)
+                       //            M = CPU Mode - 0 = Z80 ROM Mode, 1 = R800 ROM Mode, 2 = R800 DRAM Mode
+                       //    Output: NONE
+                       // Registers: NONE
+                       // Available: MSX Turbo-R
+
+constant GETCPU($0183) //  Function: Returns Current CPU Mode
+                       //     Input: NONE
+                       //    Output: A = %L00000MM: L = LED (Indicates IF Turbo LED Is Switched With CPU Mode
+                       //            M = CPU Mode - 0 = Z80 ROM Mode, 1 = R800 ROM Mode, 2 = R800 DRAM Mode
+                       // Registers: AF
+                       // Available: MSX Turbo-R
+
+constant PCMPLY($0186) //  Function: Play Specified Memory Area Through PCM Chip
+                       //     Input:  A = %V00000QQ: V = VRAM Usage Flag, Q = Quality Parameter (Speed: 0 = Fast)
+                       //            HL = Start Address In RAM Or VRAM
+                       //            BC = Length Of Area To Play
+                       //             D = Bit 0 Becomes Bit 17 Of Area Length When Using VRAM
+                       //             E = Bit 0 Becomes Bit 17 Of Start Address When Using VRAM
+                       //    Output: CY Flag Set IF Aborted With CTRL-STOP
+                       // Registers: ALL
+                       // Available: MSX Turbo-R
+
+constant PCMREC($0189) //  Function: Record Audio Using PCM Chip To Specified Memory Area
+                       //     Input:  A = %VTTTTCQQ: V = VRAM Usage Flag, T = Treshold,
+                       //             C = Zero-Data Compression, Q = Quality Parameter (Speed: 0 = Fast)
+                       //            HL = Start Address In RAM Or VRAM
+                       //            BC = Length Of Area To Record
+                       //             D = Bit 0 Becomes Bit 17 Of Area Length When Using VRAM
+                       //             E = Bit 0 Becomes Bit 17 Of Start Address When Using VRAM
+                       //    Output: CY Flag Set IF Aborted With CTRL-STOP
+                       // Registers: ALL
+                       // Available: MSX Turbo-R
 
 //=========
 // SUB-ROM
