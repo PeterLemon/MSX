@@ -34,15 +34,15 @@ constant SYNCHR($0008) //  Function: Test IF Character In [HL] Is Specified
                        //            IF TRUE GOTO CHRGTR ($0010), ELSE Generate SYNTAX ERROR 
                        //     Input: [HL] = Test Character
                        //            Compared Character Is Placed Next To Called RST Instruction
-                       //    Output: HL++, A = [HL], CY Flag Set IF Tested Character Is Numerical
-                       //            Z Flag Set IF At End Of Statement ($00 Or $3A)
+                       //    Output: HL++, A = [HL], CY-Flag Set IF Tested Character Is Numerical
+                       //            Z-Flag Set IF At End Of Statement ($00 Or $3A)
                        // Registers: AF, HL
                        // Available: MSX
 
 constant  RDSLT($000C) //  Function: Selects Slot Corresponding To Value In A & Read 1 Byte From Slot Memory
                        //            When Routine Is Called, Interrupt Is Inhibited Even After Execution Ends
-                       //     Input:  A = Slot Number: %F000EEBB - F = Basic(0) Expansion(1),
-                       //            EE = Expansion Slot Number(0..3), BB = Basic Slot Number(0..3)
+                       //     Input:  A = Slot Number: %F000EEBB - F = BASIC(0) Expansion(1),
+                       //            EE = Expansion Slot Number(0..3), BB = BASIC Slot Number(0..3)
                        //            HL = Address Of Memory To Be Read
                        //    Output: Value Of Memory Read From A
                        // Registers: AF, BC, DE
@@ -50,15 +50,15 @@ constant  RDSLT($000C) //  Function: Selects Slot Corresponding To Value In A & 
 
 constant CHRGTR($0010) //  Function: Get A Character (Or Token) From BASIC Text
                        //     Input: [HL] = Character To Be Read
-                       //    Output: HL++, A = [HL], CY Flag Set IF Tested Character Is Numerical
-                       //            Z Flag Set IF At End Of Statement ($00 Or $3A)
+                       //    Output: HL++, A = [HL], CY-Flag Set IF Tested Character Is Numerical
+                       //            Z-Flag Set IF At End Of Statement ($00 Or $3A)
                        // Registers: AF, HL
                        // Available: MSX
 
 constant  WRSLT($0014) //  Function: Select Slot Corresponding To Value In A & Write 1 Byte To Slot Memory
                        //            When Routine Is Called, Interrupt Is Inhibited Even After Execution Ends
-                       //     Input:  A = Slot Number: %F000EEBB - F = Basic(0) Expansion(1),
-                       //            EE = Expansion Slot Number(0..3), BB = Basic Slot Number(0..3)
+                       //     Input:  A = Slot Number: %F000EEBB - F = BASIC(0) Expansion(1),
+                       //            EE = Expansion Slot Number(0..3), BB = BASIC Slot Number(0..3)
                        //            HL = Address Of Memory To Be Read
                        //    Output: NONE
                        // Registers: AF, BC, D
@@ -73,8 +73,8 @@ constant  OUTDO($0018) //  Function: Send Value To Current Device
                        // Available: MSX (Call SUB-ROM Internally In Screen Modes 5..8)
 
 constant CALSLT($001C) //  Function: Call Routine In Another Slot (Inter-Slot Call)
-                       //     Input: IYH = Slot Number: %F000EEBB - F = Basic(0) Expansion(1),
-                       //             EE = Expansion Slot Number(0..3), BB = Basic Slot Number(0..3)
+                       //     Input: IYH = Slot Number: %F000EEBB - F = BASIC(0) Expansion(1),
+                       //             EE = Expansion Slot Number(0..3), BB = BASIC Slot Number(0..3)
                        //             IX = Address To Be Called
                        //    Output: Depends On Called Routine
                        // Registers: Depends On Called Routine
@@ -82,14 +82,14 @@ constant CALSLT($001C) //  Function: Call Routine In Another Slot (Inter-Slot Ca
 
 constant DCOMPR($0020) //  Function: Compare Contents Of HL & DE
                        //     Input: HL, DE
-                       //    Output: Set Z Flag IF (HL == DE), Set CY Flag IF (HL < DE)
+                       //    Output: Set Z-Flag IF (HL == DE), Set CY-Flag IF (HL < DE)
                        // Registers: AF
                        // Available: MSX
 
 constant ENASLT($0024) //  Function: Select Slot Corresponding To Value In A & Enable Slot To Be Used
                        //            When Routine Is Called, Interrupt Is Inhibited Even After Execution Ends
-                       //     Input:  A = Slot Number: %F000EEBB - F = Basic(0) Expansion(1),
-                       //            EE = Expansion Slot Number(0..3), BB = Basic Slot Number(0..3)
+                       //     Input:  A = Slot Number: %F000EEBB - F = BASIC(0) Expansion(1),
+                       //            EE = Expansion Slot Number(0..3), BB = BASIC Slot Number(0..3)
                        //            HL = Slot Page: 2 High Order Bits
                        //    Output: NONE
                        // Registers: ALL
@@ -98,11 +98,11 @@ constant ENASLT($0024) //  Function: Select Slot Corresponding To Value In A & E
 constant GETYPR($0028) //  Function: Return Type Of DAC (Decimal Accumulator)
                        //     Input: NONE
                        //    Output: S, Z, P/V Flags Change Depending On Type Of DAC:
-                       //            Types can be recognised by the flag marked by "*"
-                       //            Integer: C = 1, S = 1*, Z = 0, P/V = 1
-                       //             String: C = 1, S = 0, Z = 1*, P/V = 1
-                       //             Single: C = 1, S = 0, Z = 0, P/V = 0*
-                       //             Double: C = 0*, S = 0, Z = 0, P/V = 1
+                       //            Types Can Be Recognised By Flag Marked By "*"
+                       //            Integer: C = 1,  S = 1*, Z = 0,  P/V = 1
+                       //             String: C = 1,  S = 0,  Z = 1*, P/V = 1
+                       //             Single: C = 1,  S = 0,  Z = 0,  P/V = 0*
+                       //             Double: C = 0*, S = 0,  Z = 0,  P/V = 1
                        // Registers: AF
                        // Available: MSX
 
@@ -153,49 +153,49 @@ constant ENASCR($0044) //  Function: Enable Screen Display
                        // Available: MSX
 
 constant WRTVDP($0047) //  Function: Write Data To VDP Register
-                       //     Input: C = VDP Register Number (0..23, 32..46), B = Data To Be Written
+                       //     Input: C = VDP Register Number (0..23, 32..46), B = Data To Write
                        //    Output: NONE
                        // Registers: AF, BC
                        // Available: MSX (Call SUB-ROM Internally In Screen Modes 5..8)
 
-constant  RDVRM($004A) //  Function: Read Data From VRAM (TMS9918)
-                       //            Only Lowest 14 Bits Of VRAM Address Are Valid
+constant  RDVRM($004A) //  Function: Read Data From VRAM (14-Bit Address: $0000..$3FFF) (TMS9918)
+                       //            Only Lowest 14-Bits Of VRAM Address Are Valid
                        //            Call NRDVRM To Use All Bits
                        //     Input: HL = VRAM Address To Be Read
-                       //    Output:  A = Value Which Was Read
+                       //    Output:  A = Data Which Was Read
                        // Registers: AF
                        // Available: MSX
 
-constant WRTVRM($004D) //  Function: Write Data To VRAM (TMS9918)
-                       //            Only Lowest 14 Bits Of VRAM Address Are Valid
-                       //            Call NWRVRM To Use All Bits
-                       //     Input: HL = VRAM Address, A = Data To Be Written
+constant WRTVRM($004D) //  Function: Write Data To VRAM (14-Bit Address: $0000..$3FFF) (TMS9918)
+                       //            Only Lowest 14-Bits Of VRAM Address Are Valid
+                       //            Call NWRVRM To Use All 16-Bits
+                       //     Input: HL = VRAM Address, A = Data To Write
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX
 
-constant  SETRD($0050) //  Function: Set VRAM Address To VDP & Enable It To Be Read (TMS9918)
+constant  SETRD($0050) //  Function: Set VRAM (14-Bit Address: $0000..$3FFF) In VDP & Enable It To Be Read (TMS9918)
                        //            This Is Used To Read Auto-Increment Data From VRAM
                        //            Enables Faster Readout Than Using RDVRM In A Loop
-                       //            Only Lowest 14 Bits Of VRAM Address Are Valid
+                       //            Only Lowest 14-Bits Of VRAM Address Are Valid
                        //            Call NSETRD To Use All Bits
                        //     Input: HL = VRAM Address
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX
 
-constant SETWRT($0053) //  Function: Set VRAM Address To VDP & Enable It To Be Written (TMS9918)
+constant SETWRT($0053) //  Function: Set VRAM (14-Bit Address: $0000..$3FFF) In VDP & Enable It To Be Written (TMS9918)
                        //            This Is Used To Read Auto-Increment Data From VRAM
                        //            Enables Faster Readout Than Using WRTVRM In A Loop
-                       //            Only Lowest 14 Bits Of VRAM Address Are Valid
+                       //            Only Lowest 14-Bits Of VRAM Address Are Valid
                        //            Call NSTWRT To Use All Bits
                        //     Input: HL = VRAM Address
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX
 
-constant FILVRM($0056) //  Function: Fill Specified VRAM Area With Repeated Data (TMS9918)
-                       //            Only Lowest 14 Bits Of VRAM Address Are Valid
+constant FILVRM($0056) //  Function: Fill Specified VRAM Area (14-Bit Address: $0000..$3FFF) With Repeated Data (TMS9918)
+                       //            Only Lowest 14-Bits Of VRAM Address Are Valid
                        //            Call BIGFIL To Use All Bits
                        //     Input: HL = VRAM Destination Address, BC = Data Length, A = Data To Repeat
                        //    Output: NONE
@@ -355,11 +355,11 @@ constant CALATR($0087) //  Function: Return Address Of Sprite Attribute Table
 constant GSPSIZ($008A) //  Function: Return Current Sprite Size
                        //     Input: NONE
                        //    Output: A = Sprite Size (In Bytes)
-                       //            CY Flag Set IF (Size == 16x16), ELSE CY Flag Reset
+                       //            CY-Flag Set IF (Size == 16x16), ELSE CY-Flag Reset
                        // Registers: AF
                        // Available: MSX
 
-constant GRPPRT($008D) //  Function: Display A Character On The Graphic Screen
+constant GRPPRT($008D) //  Function: Display A Character On The Graphic-Screen
                        //     Input: A = Character Code To Be Displayed
                        //            Set Logical Operation Code In LOGOPR ($FB02) IF Screen Mode 0..8
                        //    Output: NONE
@@ -376,14 +376,14 @@ constant GICINI($0090) //  Function: Initialise PSG & Set Initial Value For PLAY
                        // Available: MSX
 
 constant WRTPSG($0093) //  Function: Write Data To PSG Register
-                       //     Input: A = PSG Register Number, E = Data To Be Written
+                       //     Input: A = PSG Register Number, E = Data To Write
                        //    Output: NONE
                        // Registers: NONE
                        // Available: MSX
 
-constant  RDPSG($0096) //  Function: Read PSG Register Value
+constant  RDPSG($0096) //  Function: Read PSG Register Data
                        //     Input: A = PSG Register Number
-                       //    Output: A = Value Which Was Read
+                       //    Output: A = Data Which Was Read
                        // Registers: NONE
                        // Available: MSX
 
@@ -399,7 +399,7 @@ constant STRTMS($0099) //  Function: Test IF The PLAY Statement Is Being Execute
 //=====================================
 constant  CHSNS($009C) //  Function: Test Status Of Keyboard Buffer
                        //     Input: NONE
-                       //    Output: Z Flag Set IF Buffer Is Empty, ELSE Z Flag Reset
+                       //    Output: Z-Flag Set IF Buffer Is Empty, ELSE Z-Flag Reset
                        // Registers: AF
                        // Available: MSX
 
@@ -417,36 +417,36 @@ constant  CHPUT($00A2) //  Function: Display A Character To The Screen
 
 constant LPTOUT($00A5) //  Function: Send A Character To The Printer
                        //     Input: A = Character Code To Be Sent
-                       //    Output: IF Failed CY Flag Set, ELSE CY Flag Reset
+                       //    Output: IF Failed CY-Flag Set, ELSE CY-Flag Reset
                        // Registers: F
                        // Available: MSX
 
 constant LPTSTT($00A8) //  Function: Test Printer Status
                        //     Input: NONE
-                       //    Output: IF (A == 255) && (Z Flag Reset), Printer Is READY
-                       //            IF (A == 0) && (Z Flag Set), Printer Is NOT READY
+                       //    Output: IF (A == 255) && (Z-Flag Reset), Printer Is READY
+                       //            IF (A == 0) && (Z-Flag Set), Printer Is NOT READY
                        // Registers: AF
                        // Available: MSX
 
 constant CNVCHR($00AB) //  Function: Test Graphic Header & Transform The Code
                        //     Input: A = Character Code
-                       //    Output: IF NOT Graphic Header CY Flag Reset
-                       //            CY Flag Set, & Z Flag Set To The Transformed Code Set In A
-                       //            CY Flag Set, & CY Flag is Reset To The Utransformed Code Set In A
+                       //    Output: IF NOT Graphic Header CY-Flag Reset
+                       //            CY-Flag Set, & Z-Flag Set To The Transformed Code Set In A
+                       //            CY-Flag Set, & CY-Flag is Reset To The Utransformed Code Set In A
                        // Registers: AF
                        // Available: MSX
 
 constant PINLIN($00AE) //  Function: Store To Specified Buffer Character Code Input Until RETURN Or STOP Key Pressed
                        //     Input: NONE
                        //    Output: HL = Start Address Of Buffer -1
-                       //            CY	Flag Set IF STOP Key Pressed
+                       //            CY-Flag Set IF STOP Key Pressed
                        // Registers: ALL
                        // Available: MSX
 
 constant  INLIN($00B1) //  Function: Store To Specified Buffer Character Code Input Until RETURN Or STOP Key Pressed
                        //     Input: NONE
                        //    Output: HL = Start Address Of Buffer -1
-                       //            CY	Flag Set IF STOP Key Pressed
+                       //            CY-Flag Set IF STOP Key Pressed
                        //            AUTFLG ($F6AA) Set
                        // Registers: ALL
                        // Available: MSX
@@ -455,26 +455,26 @@ constant QINLIN($00B4) //  Function: Store To Specified Buffer Character Code In
                        //            Displays A Question Mark "?" & A Single Space " "
                        //     Input: NONE
                        //    Output: HL = Start Address Of Buffer -1
-                       //            CY	Flag Set IF STOP Key Pressed
+                       //            CY-Flag Set IF STOP Key Pressed
                        //            AUTFLG ($F6AA) Set
                        // Registers: ALL
                        // Available: MSX
 
 constant BREAKX($00B7) //  Function: Test CTRL-STOP Key, Interrupts Are Inhibited
                        //     Input: NONE
-                       //    Output: CY Flag Set IF CTRL-STOP Key Pressed
+                       //    Output: CY-Flag Set IF CTRL-STOP Key Pressed
                        // Registers: AF
                        // Available: MSX
 
 constant ISCNTC($00BA) //  Function: Test SHIFT-STOP Key, Interrupts Are Inhibited
                        //     Input: NONE
-                       //    Output: CY Flag Set IF SHIFT-STOP Key Pressed
+                       //    Output: CY-Flag Set IF SHIFT-STOP Key Pressed
                        // Registers: AF
                        // Available: MSX
 
 constant CKCNTC($00BD) //  Function: Test SHIFT-STOP Key, Interrupts Are Inhibited (Same As ISCNTC, Used In BASIC)
                        //     Input: NONE
-                       //    Output: CY Flag Set IF SHIFT-STOP Key Pressed
+                       //    Output: CY-Flag Set IF SHIFT-STOP Key Pressed
                        // Registers: AF
                        // Available: MSX
 
@@ -484,14 +484,14 @@ constant   BEEP($00C0) //  Function: Generate BEEP
                        // Registers: ALL
                        // Available: MSX (Always Call SUB-ROM)
 
-constant    CLS($00C3) //  Function: Clear The Screen
-                       //     Input: Set Z Flag
+constant    CLS($00C3) //  Function: Clear Screen
+                       //     Input: Set Z-Flag (e.g XOR A)
                        //    Output: NONE
                        // Registers: AF, BC, DE
                        // Available: MSX (Always Call SUB-ROM)
 
 constant  POSIT($00C6) //  Function: Move Cursor
-                       //     Input: H = X-Coordinate Of Cursor, L = Y-Coordinate Of Cursor
+                       //     Input: H = X-Position Of Cursor, L = Y-Position Of Cursor
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX
@@ -554,13 +554,13 @@ constant  GTPDL($00DE) //  Function: Return Paddle Value
 //================================
 constant TAPION($00E1) //  Function: Read Header Block After Turning Cassette Motor ON
                        //     Input: NONE
-                       //    Output: CY Flag Set IF Failed
+                       //    Output: CY-Flag Set IF Failed
                        // Registers: ALL
                        // Available: MSX
 
 constant  TAPIN($00E4) //  Function: Read Data From Tape
                        //     Input: NONE
-                       //    Output: A = Tape Data, CY Flag Set IF Failed
+                       //    Output: A = Tape Data, CY-Flag Set IF Failed
                        // Registers: ALL
                        // Available: MSX
 
@@ -572,19 +572,19 @@ constant TAPIOF($00E7) //  Function: Stop Reading Data From Tape
 
 constant TAPOON($00EA) //  Function: Write Header Block After Turning Cassette Motor ON
                        //     Input: IF (A == 0) Short Header, IF (A != 0) Long Header
-                       //    Output: CY Flag Set IF Failed
+                       //    Output: CY-Flag Set IF Failed
                        // Registers: ALL
                        // Available: MSX
 
 constant TAPOUT($00ED) //  Function: Write Data To Tape
-                       //     Input: A = Data To Be Written
-                       //    Output: CY Flag Set IF Failed
+                       //     Input: A = Data To Write
+                       //    Output: CY-Flag Set IF Failed
                        // Registers: ALL
                        // Available: MSX
 
 constant TAPOOF($00F0) //  Function: Stop Writing Data To Tape
-                       //     Input: A = Data To Be Written
-                       //    Output: CY Flag Set IF Failed
+                       //     Input: A = Data To Write
+                       //    Output: CY-Flag Set IF Failed
                        // Registers: ALL
                        // Available: MSX
 
@@ -614,46 +614,48 @@ constant   PUTQ($00F9) //  Function: Put Byte In Queue (Internal Use)
 //==================
 // Graphic Routines
 //==================
-constant RIGHTC($00FC) //  Function: Shift Screenpixel Right
-                       //     Input: NONE
-                       //    Output: NONE
+constant RIGHTC($00FC) //  Function: Move Pixel Right
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
                        // Registers: AF
-                       // Available: MSX
+                       // Available: MSX (SCREEN 3 Only)
 
-constant  LEFTC($00FF) //  Function: Shift Screenpixel Left
-                       //     Input: NONE
-                       //    Output: NONE
+constant  LEFTC($00FF) //  Function: Move Pixel Left
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
                        // Registers: AF
-                       // Available: MSX
+                       // Available: MSX (SCREEN 3 Only)
 
-constant    UPC($0102) //  Function: Shift Screenpixel Up
-                       //     Input: NONE
-                       //    Output: NONE
+constant    UPC($0102) //  Function: Move Pixel Up
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
                        // Registers: AF
-                       // Available: MSX
+                       // Available: MSX (SCREEN 3 Only)
 
-constant   TUPC($0105) //  Function: Test Whether UPC Is possible, IF Possible, Execute UPC
-                       //     Input: NONE
-                       //    Output: CY Flag Set IF Operation Would End Outside Screen
+constant   TUPC($0105) //  Function: Test Against Screen Border, IF Inside Screen Border, Execute UPC (Move Pixel Up)
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                       //              CY-Flag Set IF Operation Would End Outside Screen Border
                        // Registers: AF
-                       // Available: MSX
+                       // Available: MSX (SCREEN 3 Only)
 
-constant  DOWNC($0108) //  Function: Shift Screenpixel Down
-                       //     Input: NONE
-                       //    Output: NONE
+constant  DOWNC($0108) //  Function: Move Pixel Down
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
                        // Registers: AF
-                       // Available: MSX
+                       // Available: MSX (SCREEN 3 Only)
 
-constant TDOWNC($010B) //  Function: Test Whether DOWNC Is possible, IF Possible, Execute DOWNC
-                       //     Input: NONE
-                       //    Output: CY Flag Set IF Operation Would End Outside Screen
+constant TDOWNC($010B) //  Function: Test Against Screen Border, IF Inside Screen Border, Execute DOWNC (Move Pixel Down)
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                       //              CY-Flag Set IF Operation Would End Outside Screen Border
                        // Registers: AF
-                       // Available: MSX
+                       // Available: MSX (SCREEN 3 Only)
 
-constant SCALXY($010E) //  Function: Scale X & Y Coordinates
-                       //     Input: NONE
-                       //    Output: NONE
-                       // Registers: NONE
+constant SCALXY($010E) //  Function: Clip X,Y Coordinates (Against Screen Border)
+                       //     Input: BC = X-Coordinate, DE = Y-Coordinate
+                       //    Output: BC = X-Coordinate Clipped, DE = Y-Coordinate Clipped
+                       // Registers: AF
                        // Available: MSX
 
 constant  MAPXY($0111) //  Function: Place Cursor At Current Cursor Address
@@ -676,25 +678,26 @@ constant STOREC($0117) //  Function: Record Current Cursor Addresses Mask Patter
                        // Registers: NONE
                        // Available: MSX
 
-constant SETATR($011A) //  Function: Set Attribute Byte
-                       //     Input: NONE
-                       //    Output: NONE
-                       // Registers: NONE
+constant SETATR($011A) //  Function: Set Attribute Byte In ATRBYT ($F3F2)
+                       //     Input: A = Attribute
+                       //    Output: CY-Flag Set IF Wrong Attribute
+                       // Registers: F
                        // Available: MSX
 
-constant  READC($011D) //  Function: Read Attribute Byte
-                       //     Input: NONE
-                       //    Output: NONE
-                       // Registers: NONE
+constant  READC($011D) //  Function: Read Attribute Byte Of Current Screen Pixel
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: A = Pixel Attribute
+                       // Registers: AF
                        // Available: MSX
 
-constant   SETC($0120) //  Function: Return Current Screenpixel Of Specificed Attribute Byte
-                       //     Input: NONE
+constant   SETC($0120) //  Function: Set Attribute Of Pixel
+                       //     Input:   CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //            ATRBYT = Attribute Byte
                        //    Output: NONE
-                       // Registers: NONE
+                       // Registers: AF
                        // Available: MSX
 
-constant NSETCX($0123) //  Function: Set Horizontal Screenpixels
+constant NSETCX($0123) //  Function: Set Horizontal Screen Pixels
                        //     Input: NONE
                        //    Output: NONE
                        // Registers: NONE
@@ -712,16 +715,16 @@ constant PNTINI($0129) //  Function: Initalises PAINT Instruction
                        // Registers: NONE
                        // Available: MSX
 
-constant  SCANR($012C) //  Function: Scan Screenpixels Right
-                       //     Input: NONE
-                       //    Output: NONE
-                       // Registers: NONE
+constant  SCANR($012C) //  Function: Scan Screen Pixels Right
+                       //     Input: B = "Suspend" Flag, C = Border-Counting
+                       //    Output: C = "Pixel-Changed" Flag, DE = Border-Counting
+                       // Registers: ALL
                        // Available: MSX
 
-constant  SCANL($012F) //  Function: Scan Screenpixels Left
-                       //     Input: NONE
-                       //    Output: NONE
-                       // Registers: NONE
+constant  SCANL($012F) //  Function: Scan Screen Pixels Left
+                       //     Input: B = "Suspend" Flag, C = Border-Counting
+                       //    Output: C = "Pixel-Changed" Flag, DE = Border-Counting
+                       // Registers: ALL
                        // Available: MSX
 
 //===============
@@ -747,7 +750,7 @@ constant RSLREG($0138) //  Function: Read Contents Of Current Output To BASIC Sl
                        // Available: MSX
 
 constant WSLREG($013B) //  Function: Write To Primary Slot Register
-                       //     Input: A = Value To Be Written
+                       //     Input: A = Value To Write
                        //    Output: NONE
                        // Registers: NONE
                        // Available: MSX
@@ -758,22 +761,22 @@ constant  RDVDP($013E) //  Function: Read VDP Status Register
                        // Registers: A
                        // Available: MSX
 
-constant SNSMAT($0141) //  Function: Read Value Of Specified Line From Keyboard Matrix
+constant SNSMAT($0141) //  Function: Read Data Of Specified Line From Keyboard Matrix
                        //     Input: A = Specified Line
                        //    Output: A = Data Which Was Read (Bit Corresponding To Pressed Key Will Be 0)
                        // Registers: AF, C
                        // Available: MSX
 
-constant PHYDIO($0144) //  Function: Physical Input/Output For Disk Devices
+constant PHYDIO($0144) //  Function: Physical Input/Output For DISK Devices
                        //     Input:  A = Drive Number (0 = A:, 1 = B:,...)
                        //             B = Number Of Sector To Be Read From Or Written To
                        //             C = Media ID
                        //            DE = First Sector Number To Be Read From Or Written To
                        //            HL = Starting Address Of RAM Buffer To Be Read From Or Written To Specified Sectors
-		       //            CY Set For Sector Writing, CY Reset For Sector Reading
-                       //    Output: CY Set IF Failed
+		       //            CY-Flag Set For Sector Writing, CY-Flag Reset For Sector Reading
+                       //    Output: CY-Flag Set IF Failed
                        //             B = Number Of Sectors Actually Read Or Written
-                       //             A = Error Code (Only IF CY Set):
+                       //             A = Error Code (Only IF CY-Flag Set):
                        //                 0 = Write Protected
                        //                 2 = Not Ready
                        //                 4 = Data Error
@@ -786,7 +789,7 @@ constant PHYDIO($0144) //  Function: Physical Input/Output For Disk Devices
                        // Registers: ALL
                        // Available: MSX
 
-constant FORMAT($0147) //  Function: Initialises Mass-Storage Media Like Formatting Of Diskettes
+constant FORMAT($0147) //  Function: Initialises Mass-Storage Media Like Formatting Of Disks
                        //     Input: NONE
                        //    Output: NONE
                        // Registers: ALL
@@ -856,12 +859,12 @@ constant CHKSLZ($0162) //  Function: Search Slots For SUB-ROM
 
 constant CHKNEW($0165) //  Function: Test Screen Mode
                        //     Input: NONE
-                       //    Output: CY Flag Set IF Screenmode = 5, 6, 7 Or 8 
+                       //    Output: CY-Flag Set IF Screen Mode = 5, 6, 7 Or 8 
                        // Registers: AF
                        // Available: MSX2
 
 constant    EOL($0168) //  Function: Delete To End Of Line
-                       //     Input: H = X-Coordinate Of Cursor, L = Y-Coordinate Of Cursor
+                       //     Input: H = X-Position Of Cursor, L = Y-Position Of Cursor
                        //    Output: NONE
                        // Registers: ALL
                        // Available: MSX2
@@ -883,20 +886,20 @@ constant NSETRD($016E) //  Function: Enable VRAM To Be Read By Setting Address
                        // Registers: AF
                        // Available: MSX2
 
-constant NSTWRT($0171) //  Function: Enable VRAM To Be Written By Setting Address
+constant NSTWRT($0171) //  Function: Enable VRAM To Be Written By Setting Address 
                        //     Input: HL = VRAM Address
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX2
 
-constant NRDVRM($0174) //  Function: Read Data From VRAM
-                       //     Input: HL = VRAM Address To Be Read
-                       //    Output:  A = Value Which Was Read
+constant NRDVRM($0174) //  Function: Read Data From VRAM (16-Bit Address: $0000..$FFFF)
+                       //     Input: HL = VRAM Address
+                       //    Output: A = Value Which Was Read
                        // Registers: F
                        // Available: MSX2
 
-constant NWRVRM($0177) //  Function: Writes Data In VRAM
-                       //     Input: HL = VRAM Address, A = Data To Be Written
+constant NWRVRM($0177) //  Function: Write Data To VRAM (16-Bit Address: $0000..$FFFF)
+                       //     Input: HL = VRAM Address, A = Data To Write
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX2
@@ -920,7 +923,7 @@ constant WRBTST($017D) //  Function: Write Value To I/O Port $F4
 // Entries Appended For MSX Turbo-R
 //==================================
 constant CHGCPU($0180) //  Function: Change CPU Mode
-                       //     Input: A = %L00000MM: L = LED (Indicates IF Turbo LED Is Switched With CPU Mode)
+                       //     Input: A = Settings: %L00000MM - L = LED (Indicates IF Turbo LED Is Switched With CPU Mode)
                        //            M = CPU Mode - 0 = Z80 ROM Mode, 1 = R800 ROM Mode, 2 = R800 DRAM Mode
                        //    Output: NONE
                        // Registers: NONE
@@ -928,40 +931,198 @@ constant CHGCPU($0180) //  Function: Change CPU Mode
 
 constant GETCPU($0183) //  Function: Returns Current CPU Mode
                        //     Input: NONE
-                       //    Output: A = %L00000MM: L = LED (Indicates IF Turbo LED Is Switched With CPU Mode
+                       //    Output: A = Settings: %L00000MM - L = LED (Indicates IF Turbo LED Is Switched With CPU Mode
                        //            M = CPU Mode - 0 = Z80 ROM Mode, 1 = R800 ROM Mode, 2 = R800 DRAM Mode
                        // Registers: AF
                        // Available: MSX Turbo-R
 
 constant PCMPLY($0186) //  Function: Play Specified Memory Area Through PCM Chip
-                       //     Input:  A = %V00000QQ: V = VRAM Usage Flag, Q = Quality Parameter (Speed: 0 = Fast)
+                       //     Input:  A = Settings: %V00000QQ - V = VRAM Usage Flag, Q = Quality Parameter (Speed: 0 = Fast)
                        //            HL = Start Address In RAM Or VRAM
                        //            BC = Length Of Area To Play
                        //             D = Bit 0 Becomes Bit 17 Of Area Length When Using VRAM
                        //             E = Bit 0 Becomes Bit 17 Of Start Address When Using VRAM
-                       //    Output: CY Flag Set IF Aborted With CTRL-STOP
+                       //    Output: CY-Flag Set IF Aborted With CTRL-STOP
                        // Registers: ALL
                        // Available: MSX Turbo-R
 
 constant PCMREC($0189) //  Function: Record Audio Using PCM Chip To Specified Memory Area
-                       //     Input:  A = %VTTTTCQQ: V = VRAM Usage Flag, T = Treshold,
+                       //     Input:  A = Settings: %VTTTTCQQ - V = VRAM Usage Flag, T = Treshold,
                        //             C = Zero-Data Compression, Q = Quality Parameter (Speed: 0 = Fast)
                        //            HL = Start Address In RAM Or VRAM
                        //            BC = Length Of Area To Record
                        //             D = Bit 0 Becomes Bit 17 Of Area Length When Using VRAM
                        //             E = Bit 0 Becomes Bit 17 Of Start Address When Using VRAM
-                       //    Output: CY Flag Set IF Aborted With CTRL-STOP
+                       //    Output: CY-Flag Set IF Aborted With CTRL-STOP
                        // Registers: ALL
                        // Available: MSX Turbo-R
 
 //=========
 // SUB-ROM
 //=========
-constant  GRPRT($0089) //  Function: Display A Character On The Graphic Screen (Active In Screen Modes 5..8)
-                       //     Input: A = Character Code To Be Displayed
+
+//================
+// BASIC Routines
+//================
+constant  PAINT($0069) //  Function: Paint Graphic-Screen
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant   PSET($006D) //  Function: Set Point
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant ATRSCN($0071) //  Function: Scans Color Attribute
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant  GLINE($0075) //  Function: Draw Line
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant DOBOXF($0079) //  Function: Draw Filled Box
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant DOLINE($007D) //  Function: Draw Line
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant BOXLIN($0081) //  Function: Draw Box
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+//====================
+// NON-BASIC Routines
+//====================
+constant DOGRPH($0085) //  Function: Draw Line
+                       //     Input: Start Point: BC = X-Coordinate, HL = Y-Coordinate
+                       //              End Point:  GXPOS ($FCB3) = X-Coordinate, GYPOS ($FCB5) = Y-Coordinate
+                       //                  Color: ATRBYT ($F3F3) = Attribute
+                       // Logical Operation Code: LOGOPR ($FB02) = Code
+                       //    Output: NONE
+                       // Registers: AF
+                       // Available: MSX2
+
+constant  GRPRT($0089) //  Function: Display A Character On The Graphic-Screen (Active In Screen Modes 5..8)
+                       //     Input:   Character: A = Character Code To Be Displayed
+                       //                  Color: ATRBYT ($F3F3) = Attribute
+                       // Logical Operation Code: LOGOPR ($FB02) = Code
                        //    Output: NONE
                        // Registers: NONE
                        // Available: MSX2
+
+constant SCALXYB($008D) //  Function: Clip X,Y Coordinates (Against Screen Border) (Same As SCALXY In MAIN-ROM)
+                        //     Input: BC = X-Coordinate, DE = Y-Coordinate
+                        //    Output: BC = Clipped X-Coordinate, DE = Clipped Y-Coordinate
+                        // Registers: AF
+                        // Available: MSX2
+
+constant MAPXYC($0091) //  Function: Convert X,Y Coordinates Position To Address: & Mask In CLOC & CMASK
+                       //     Input: BC = X-Coordinate, DE = Y-Coordinate
+                       //    Output: HL = VRAM Address: In SCREEN 3 (Also In CLOC)
+                       //             A = Mask:         In SCREEN 3 (Also In CMASK)
+                       //            HL = X-Coordinate: In SCREEN 5..8 (Also In CLOC)
+                       //             A = Y-Coordinate: In SCREEN 5..8 (Also In CMASK)
+                       // Registers: F
+                       // Available: MSX2
+
+constant  READCB($0095) //  Function: Read Attribute Byte Of Current Screen Pixel (Same As READC In MAIN-ROM)
+                        //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                        //    Output: A = Pixel Attribute
+                        // Registers: AF
+                        // Available: MSX2
+
+constant SETATRB($0099) //  Function: Set Attribute Byte In ATRBYT ($F3F2) (Same As SETATR In MAIN-ROM)
+                        //     Input: A = Attribute
+                        //    Output: CY-Flag Set IF Wrong Attribute
+                        // Registers: F
+                        // Available: MSX2
+
+constant   SETCB($009D) //  Function: Set Attribute Of Pixel (Same As SETC In MAIN-ROM)
+                        //     Input:   CLOC = X-Coordinate, CMASK = Y-Coordinate
+                        //            ATRBYT = Attribute Byte
+                        //    Output: NONE
+                        // Registers: AF
+                        // Available: MSX2
+
+constant TRIGHT($00A1) //  Function: Test Against Screen Border, IF Inside Screen Border, Execute RIGHTC (Move Pixel Right)
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                       //              CY-Flag Set IF Operation Would End Outside Screen Border
+                       // Registers: AF
+                       // Available: MSX2 (SCREEN 3 Only)
+
+constant RIGHTCB($00A5) //  Function: Move Pixel Right (Same As RIGHTC In MAIN-ROM)
+                        //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                        //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                        // Registers: AF
+                        // Available: MSX2 (SCREEN 3 Only)
+
+constant TLEFTC($00A9) //  Function: Test Against Screen Border, IF Inside Screen Border, Execute LEFTC (Move Pixel Left)
+                       //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                       //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                       //              CY-Flag Set IF Operation Would End Outside Screen Border
+                       // Registers: AF
+                       // Available: MSX2 (SCREEN 3 Only)
+
+constant  LEFTCB($00AD) //  Function: Move Pixel Left (Same As LEFTC In MAIN-ROM)
+                        //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                        //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                        // Registers: AF
+                        // Available: MSX2 (SCREEN 3 Only)
+
+constant TDOWNCB($00B1) //  Function: Test Against Screen Border, IF Inside Screen Border, Execute DOWNC (Move Pixel Down) (Same As TDOWNC In MAIN-ROM)
+                        //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                        //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                        //              CY-Flag Set IF Operation Would End Outside Screen Border
+                        // Registers: AF
+                        // Available: MSX2 (SCREEN 3 Only)
+
+constant  DOWNCB($00B5) //  Function: Move Pixel Down (Same As DOWNC In MAIN-ROM)
+                        //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                        //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                        // Registers: AF
+                        // Available: MSX2 (SCREEN 3 Only)
+
+constant   TUPCB($00B9) //  Function: Test Against Screen Border, IF Inside Screen Border, Execute UPC (Move Pixel Up) (Same As TUPC In MAIN-ROM)
+                        //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                        //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                        //              CY-Flag Set IF Operation Would End Outside Screen Border
+                        // Registers: AF
+                        // Available: MSX2 (SCREEN 3 Only)
+
+constant    UPCB($00BD) //  Function: Move Pixel Up (Same As UPC In MAIN-ROM)
+                        //     Input: CLOC = X-Coordinate, CMASK = Y-Coordinate
+                        //    Output: CLOC = New X-Coordinate, CMASK = New Y-Coordinate
+                        // Registers: AF
+                        // Available: MSX2 (SCREEN 3 Only)
+
+constant  SCANRB($00C1) //  Function: Scan Screen Pixels Right (Same As SCANR In MAIN-ROM)
+                        //     Input: B = "Suspend" Flag, C = Border-Counting
+                        //    Output: C = "Pixel-Changed" Flag, DE = Border-Counting
+                        // Registers: ALL
+                        // Available: MSX2
+
+constant  SCANLB($00C5) //  Function: Scan Screen Pixels Left (Same As SCANL In MAIN-ROM)
+                        //     Input: B = "Suspend" Flag, C = Border-Counting
+                        //    Output: C = "Pixel-Changed" Flag, DE = Border-Counting
+                        // Registers: ALL
+                        // Available: MSX2
 
 constant NVBXLN($00C9) //  Function: Draw A Box
                        //     Input: Start Point: BC = X-Coordinate, DE = Y-Coordinate
@@ -1087,27 +1248,30 @@ constant CALATRB($00FD) //  Function: Return Address Of Sprite Attribute Table (
 constant GSPSIZB($0101) //  Function: Return Current Sprite Size (Same As GSPSIZ In MAIN-ROM)
                         //     Input: NONE
                         //    Output: A = Sprite Size (In Bytes)
-                        //            CY Flag Set IF (Size == 16x16), ELSE CY Flag Reset
+                        //            CY-Flag Set IF (Size == 16x16), ELSE CY-Flag Reset
                         // Registers: AF
                         // Available: MSX2
 
-constant GETPAT($0105) //  Function: Return Character Pattern
+//========================
+// MSX2 Specific Routines
+//========================
+constant GETPAT($0105) //  Function: Return Current Character Pattern
                        //     Input: A = Character Code
-                       //    Output: PATWRK ($FC40) = Character Pattern
+                       //    Output: PATWRK ($FC40 Onwards) = Character Pattern
                        // Registers: ALL
-                       // Available: MSX2
+                       // Available: MSX2 (Same As Non-Callable Routine In MSX1-BIOS)
 
-constant WRTVRMB($0109) //  Function: Write Data To VRAM (Same As WRTVRM In MAIN-ROM)
-                        //     Input: HL = VRAM Address ($0000..$FFFF), A = Data To Be Written
+constant WRTVRMB($0109) //  Function: Write Data To VRAM (16-Bit Address: $0000..$FFFF) (Same As NWRVRM In MAIN-ROM)
+                        //     Input: HL = VRAM Address, A = Data To Write
                         //    Output: NONE
                         // Registers: AF
                         // Available: MSX2
 
-constant RDVRMB($010D) //  Function: Read Contents Of VRAM (Same As RDVRM In MAIN-ROM)
-                       //     Input: HL = VRAM Address ($0000..$FFFF) To Be Read
-                       //    Output: A = Value Which Was Read
-                       // Registers: AF
-                       // Available: MSX2
+constant  RDVRMB($010D) //  Function: Read Data From VRAM (16-Bit Address: $0000..$FFFF) (Same As NRDVRM In MAIN-ROM)
+                        //     Input: HL = VRAM Address
+                        //    Output: A = Data Which Was Read
+                        // Registers: AF
+                        // Available: MSX2
 
 constant CHGCLRB($0111) //  Function: Change Screen Color (Same As CHGCLR In MAIN-ROM)
                         //     Input: A = Screen Mode
@@ -1124,14 +1288,38 @@ constant CLSSUB($0115) //  Function: Clear Screen
                        // Registers: ALL
                        // Available: MSX2
 
+constant CLRTXT($0119) //  Function: Clear Text-Screen
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
 constant DSPFNKB($011D) //  Function: Display Function Keys (Same As DSPFNK In MAIN-ROM)
                         //     Input: NONE
                         //    Output: NONE
                         // Registers: ALL
                         // Available: MSX2
 
+constant  DELLNO($0121) //  Function: Remove Line In Text-Screen
+                        //     Input: L = Line Number
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
+
+constant  INSLNO($0125) //  Function: Add Line To Text-Screen
+                        //     Input: L = Line Number
+                        //    Output: NONE
+                        // Registers: ALL
+                        // Available: MSX2
+
+constant  PUTVRM($0129) //  Function: Put Character On Text-Screen
+                        //     Input: L = X-Position, H = Y-Position
+                        //    Output: NONE
+                        // Registers: AF
+                        // Available: MSX2
+
 constant WRTVDPB($012D) //  Function: Write Data To VDP Register (Same As WRTVDP In MAIN-ROM)
-                        //     Input: C = VDP Register Number (0..23, 32..46), B = Data To Be Written
+                        //     Input: C = VDP Register Number (0..23, 32..46), B = Data To Write
                         //    Output: NONE
                         // Registers: AF, BC
                         // Available: MSX2
@@ -1142,6 +1330,18 @@ constant VDPSTA($0131) //  Function: Read Data From VDP Register
                        // Registers: F
                        // Available: MSX2
 
+constant KYKLOK($0135) //  Function: Control KANA-Key & KANA-Lamp (Japan)
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: AF
+                       // Available: MSX2
+
+constant PUTCHR($0139) //  Function: Get Key-Code From Keyboard, Convert To KANA & Place In Buffer (Japan)
+                       //     Input: Z-Flag = Conversion Mode (Set IF Not In Conversion Mode)
+                       //    Output: NONE
+                       // Registers: AF
+                       // Available: MSX2
+
 constant SETPAG($013D) //  Function: Switche Page
                        //     Input: DPPAGE ($FAF5) = Display Page Number
                        //            ACPAGE ($FAF6) =  Active Page Number
@@ -1149,7 +1349,10 @@ constant SETPAG($013D) //  Function: Switche Page
                        // Registers: AF
                        // Available: MSX2
 
-constant INIPLT($0141) //  Function: Initialise Palette (Current Palette Is Saved In VRAM)
+//==================
+// Palette Routines
+//==================
+constant INIPLT($0141) //  Function: Initialise Palette (Current Palette Is Saved To VRAM)
                        //     Input: NONE
                        //    Output: NONE
                        // Registers: AF, BC, DE
@@ -1161,74 +1364,241 @@ constant RSTPLT($0145) //  Function: Restore Palette From VRAM
                        // Registers: AF, BC, DE
                        // Available: MSX2
 
-constant GETPLT($0149) //  Function: Obtain Colour Code From Palette
+constant GETPLT($0149) //  Function: Get Colour Code From Palette
                        //     Input: D = Palette Number (0..15)
-                       //    Output: B = %RRRRBBBB R = Red Code, B = Blue Code
-                       //            C = %0000GGGG G = Green Code
+                       //    Output: B = Red & Blue: %RRRRBBBB - R = Red Code, B = Blue Code
+                       //            C = Green: %0000GGGG - G = Green Code
                        // Registers: AF, DE
                        // Available: MSX2
 
-constant SETPLT($014D) //  Function: Sets Colour Code To Palette
+constant SETPLT($014D) //  Function: Set Colour Code To Palette
                        //     Input: D = Palette Number (0..15)
-                       //            A = %RRRRBBBB R = Red Code, B = Blue Code
-                       //            E = %0000GGGG G = Green Code
+                       //            A = Red & Blue: %RRRRBBBB - R = Red Code, B = Blue Code
+                       //            E = Green: %0000GGGG - G = Green Code
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX2
 
+//================
+// BASIC Routines
+//================
+constant PUTSPRT($0151) //  Function: Set Sprites
+                        //     Input: HL = BASIC Text-Pointer
+                        //    Output: HL = Adapted BASIC Text-Pointer
+                        // Registers: ALL
+                        // Available: MSX2 (BASIC!)
+
+constant  COLOR($0155) //  Function: Change Screen, Sprite, Or Palette Color Value
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant SCREEN($0159) //  Function: Change Screen Mode
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant WIDTHS($015D) //  Function: Change Text-Screen Width
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant    VDP($0161) //  Function: Write Data To VDP Register
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant   VDPF($0165) //  Function: Read Data From VDP Register
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant   BASE($0169) //  Function: Write VDP Base Register
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant  BASEF($016D) //  Function: Read VDP Base Register
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant  VPOKE($0171) //  Function: Write Byte To VRAM
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant  VPEEK($0175) //  Function: Read Byte From VRAM
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant   SETS($0179) //  Function: Set BEEP, ADJUST, TIME & DATE
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+//====================
+// NON-BASIC Routines
+//====================
 constant  BEEPB($017D) //  Function: Generate BEEP (Same As BEEP In MAIN-ROM)
                        //     Input: NONE
                        //    Output: NONE
                        // Registers: ALL
                        // Available: MSX2
 
-constant PROMPT($0181) //  Function: Display Prompt
+constant PROMPT($0181) //  Function: Display Prompt (Default: “Ok”)
                        //     Input: NONE
                        //    Output: NONE
                        // Registers: ALL
                        // Available: MSX2
 
-constant NEWPAD($01AD) //  Function: Read Status Of Mouse Or Light-Pen
-                       //     Input: Call Setting Following Data In A:
-                       //            Descriptions In Parenthesis Are Return Values
-                       //  8 ....... Light-Pen Check (Valid At $FF)
-                       //  9 ....... Return X-Coordinate
-                       // 10 ....... Return Y-Coordinate
-                       // 11 ....... Return Light-Pen Switch Status ($FF, When Pressed)
-                       // 12 ....... Whether Mouse Is Connected To Port 1 (Valid At $FF)
-                       // 13 ....... Return Offset In X-Direction
-                       // 14 ....... Return Offset In Y-Direction
-                       // 15 ....... (Always 0)
-                       // 16 ....... Whether Mouse Is Connected To Port 2 (Valid At $FF)
-                       // 17 ....... Return Offset In X-Direction
-                       // 18 ....... Return Offset In Y-Direction
-                       // 19 ....... (Always 0)
-                       //    Output: A
+constant SDFSCR($0185) //  Function: Recover Screen-Parameter Of Clock-Chip
+                       //  When CY-Flag Set, Function-Key Text Will Display
+                       //     Input: CY-Flag Reset After MSX-DOS Call
+                       //    Output: NONE
                        // Registers: ALL
                        // Available: MSX2
 
-constant CHGMDP($01B5) //  Function: Change VDP Mode, Palette Is Initialised
+constant SETSCR($0189) //  Function: Recover Screen-Parameter Of Clock-Chip, & Print Welcome Message
+                       //  When CY-Flag Set, Function-Key Text Will Display
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
+constant  SCOPY($018D) //  Function: Copy VRAM, Array & DISK-FILE
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+//===================
+// BIT-BLIT Routines
+//===================
+// Mostly Executed by the VDP, Parameters Must Be Passed Through System RAM ($F562)
+// See MSX2 System Variables For More Detail, HL Must Be $F562 When Calling
+constant  BLTVV($0191) //  Function: Copy VRAM To VRAM
+                       //     Input: SX, SY, DX, DY, NX, NY, ARG, L_OP
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
+constant  BLTVM($0195) //  Function: Copy MAIN-RAM To VRAM
+                       //     Input: SX = Address Of Screen Data In RAM, DX, DY, ARG, L_OP,
+                       //            NX & NY Must Be In Screen Data
+                       //    Output: CY-Flag Set IF Data Failure In RAM
+                       // Registers: ALL
+                       // Available: MSX2
+
+constant  BLTMV($0199) //  Function: Copy VRAM To MAIN-RAM
+                       //     Input: DX = Address Of Screen Data In RAM, SX, SY, ARG, L_OP,
+                       //            NX & NY Must Be In Screen Data
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
+constant  BLTVD($019D) //  Function: Copy DISK-FILE To VRAM
+                       //     Input: SX = Address Of Disk Filename, DX, DY, ARG, L_OP,
+                       //            NX & NY Must Be In Screen Data
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
+constant  BLTDV($01A1) //  Function: Copy VRAM To DISK-FILE
+                       //     Input: DX = Address Of Disk Filename, SX, SY, NX, NY, ARG
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
+constant  BLTMD($01A5) //  Function: Copy DISK-FILE To MAIN-RAM
+                       //     Input: SX = Address Of Disk Filename
+                       //            DX = Start Address In RAM
+                       //            DY = End Address In RAM
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
+constant  BLTDM($01A9) //  Function: Copy MAIN-RAM To DISK-FILE
+                       //     Input: DX = Address Of Disk Filename
+                       //            SX = Start Address In RAM
+                       //            SY = End Address In RAM
+                       //    Output: NONE
+                       // Registers: ALL
+                       // Available: MSX2
+
+//===============
+// Miscellaneous
+//===============
+constant NEWPAD($01AD) //  Function: Read Status Of Mouse Or Light-Pen
+                       //     Input: Call Setting Following Data In A:
+                       //            Descriptions In Parenthesis Are Return Values
+                       //  8 ....... Light-Pen Check ($FF = Available / Touching Screen)
+                       //  9 ....... Read X-Coordinate
+                       // 10 ....... Read Y-Coordinate
+                       // 11 ....... Read Light-Pen Switch Status ($FF = Pressed)
+                       // 12 ....... Whether Mouse Is Connected To Port 1 ($FF = Available)
+                       // 13 ....... Read Offset In X-Direction
+                       // 14 ....... Read Offset In Y-Direction
+                       // 15 ....... No Function (Always 0)
+                       // 16 ....... Whether Mouse Is Connected To Port 2 ($FF = Available)
+                       // 17 ....... Read Offset In X-Direction
+                       // 18 ....... Read Offset In Y-Direction
+                       // 19 ....... No Function (Always 0)
+                       // 21 ....... 2nd Light-Pen Check ($FF = Available / Touching Screen)
+                       // 22 ....... Read X-Coordinate
+                       // 23 ....... Read Y-Coordinate
+                       // 24 ....... Read 2nd Light-Pen Switch Status ($FF = Pressed)
+                       //    Output: A
+                       // Registers: ALL
+                       // Available: MSX2 (Access Via GTPAD In MAIN-ROM, Numbers 8 & Up Will Be Forwarded To This Call)
+
+constant GETPUT($01B1) //  Function: GET TIME, GET DATE & PUT KANJI
+                       //     Input: HL = BASIC Text-Pointer
+                       //    Output: HL = Adapted BASIC Text-Pointer
+                       // Registers: ALL
+                       // Available: MSX2 (BASIC!)
+
+constant CHGMDP($01B5) //  Function: Change Screen Mode, Palette Is Initialised
                        //     Input: A = Screen Mode (0..8)
                        //    Output: NONE
                        // Registers: ALL
                        // Available: MSX2
 
-constant KNJPRT($01BD) //  Function: Send A Kanji Character To The Graphic Screen (Mode 5..8)
-                       //     Input: BC = JIS Kanji Code, A = Display Mode
-                       //            The Display Mode Is Similar To PUT KANJI BASIC Command:
-                       // 0 ........ Display In 16x16 Dots
-		       // 1 ........ Display Even Dots
-		       // 2 ........ Display Odd Dots
+constant   REVI($01B9) //  Function: Not Used (Reserved Entry)
+                       //     Input: NONE
+                       //    Output: NONE
+                       // Registers: ALL
                        // Available: MSX2
 
-constant REDCLK($01F5) //  Function: Read Clock Data
-                       //     Input: C = RAM Address Of Clock: %00MMAAAA - A = Address (0..15), M = Clock Mode (0..3)
-                       //    Output: A = Data Which Was Read (Only 4 Low Order Bits Are Valid)
+constant KNJPRT($01BD) //  Function: Send A Kanji Character To The Graphic-Screen (Mode 5..8)
+                       //     Input: BC = JIS Kanji-Character Code, A = Display Mode
+                       //            The Display Mode Is Similar To PUT KANJI BASIC Command:
+                       // 0 ........ Display In 16x16 Dots (FULL)
+		       // 1 ........ Display Even Dots (EVEN)
+		       // 2 ........ Display Odd Dots (ODD)
+                       //
+                       // Available: MSX2
+
+constant REDCLK($01F5) //  Function: Read CLOCK-RAM Data
+                       //     Input: C = CLOCK-RAM Address: %00BBAAAA - A = Address (0..15), B = Block Number (0..3)
+                       //    Output: A = Data Which Was Read (Lower 4-Bits)
                        // Registers: F
                        // Available: MSX2
 
-constant WRTCLK($01F9) //  Function: Write Clock Data
-                       //     Input: A = Data To Be Written, C = RAM Address Of Clock
+constant WRTCLK($01F9) //  Function: Write CLOCK-RAM Data
+                       //     Input: C = CLOCK-RAM Address: %00BBAAAA - A = Address (0..15), B = Block Number (0..3)
+                       //            A = Data To Write
                        //    Output: NONE
                        // Registers: F
                        // Available: MSX2
