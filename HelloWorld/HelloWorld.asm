@@ -23,4 +23,4 @@ Loop:
   jr Loop
 
 CHMSG:
-  db 13,10,"Hello, World!",0 // Hello World Text (Null-Terminated String)
+  db 13,"\nHello, World!",0 // Hello World Text (Null-Terminated String)
