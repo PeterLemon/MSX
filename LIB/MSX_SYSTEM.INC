@@ -176,7 +176,7 @@ constant WRTVRM($004D) //  Function: Write Data To VRAM (14-Bit Address: $0000..
 
 constant  SETRD($0050) //  Function: Set VRAM (14-Bit Address: $0000..$3FFF) In VDP & Enable It To Be Read (TMS9918)
                        //            This Is Used To Read Auto-Increment Data From VRAM
-                       //            Enables Faster Readout Than Using RDVRM In A Loop
+                       //            Enables Faster Reads Than Using RDVRM In A Loop
                        //            Only Lowest 14-Bits Of VRAM Address Are Valid
                        //            Call NSETRD To Use All Bits
                        //     Input: HL = VRAM Address
@@ -185,8 +185,8 @@ constant  SETRD($0050) //  Function: Set VRAM (14-Bit Address: $0000..$3FFF) In 
                        // Available: MSX
 
 constant SETWRT($0053) //  Function: Set VRAM (14-Bit Address: $0000..$3FFF) In VDP & Enable It To Be Written (TMS9918)
-                       //            This Is Used To Write Auto-Increment Data From VRAM
-                       //            Enables Faster Writeout Than Using WRTVRM In A Loop
+                       //            This Is Used To Write Auto-Increment Data To VRAM
+                       //            Enables Faster Writes Than Using WRTVRM In A Loop
                        //            Only Lowest 14-Bits Of VRAM Address Are Valid
                        //            Call NSTWRT To Use All Bits
                        //     Input: HL = VRAM Address
