@@ -880,13 +880,17 @@ constant BIGFIL($016B) //  Function: Same Function As FILVRM, Differences Are As
                        // Registers: AF, BC
                        // Available: MSX2 (Do Not Call SUB-ROM While Screen Modes 4..8 Are Changed)
 
-constant NSETRD($016E) //  Function: Enable VRAM To Be Read By Setting Address
+constant NSETRD($016E) //  Function: Set VRAM (16-Bit Address: $0000..$FFFF) In VDP & Enable It To Be Read
+                       //            This Is Used To Read Auto-Increment Data From VRAM
+                       //            Enables Faster Reads Than Using NRDVRM In A Loop
                        //     Input: HL = VRAM Address
                        //    Output: NONE
                        // Registers: AF
                        // Available: MSX2
 
-constant NSTWRT($0171) //  Function: Enable VRAM To Be Written By Setting Address 
+constant NSTWRT($0171) //  Function: Set VRAM (16-Bit Address: $0000..$FFFF) In VDP & Enable It To Be Written
+                       //            This Is Used To Write Auto-Increment Data To VRAM
+                       //            Enables Faster Writes Than Using NWRVRM In A Loop
                        //     Input: HL = VRAM Address
                        //    Output: NONE
                        // Registers: AF
