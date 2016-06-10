@@ -1,4 +1,4 @@
-# MSX2+ / Turbo-R 24-Bit RGB -> 8-Bit YJK Screen 12 Image Encoder
+# MSX2+/Turbo-R 24-Bit RGB -> 8-Bit YJK Screen 12 Image Encoder by krom (Peter Lemon):
 #
 # Each YJK Block Uses 4 Dots At A Time:
 # Dot | C7 C6 C5 C4 C3 | C2 C1 C0 | <- 8-Bits
