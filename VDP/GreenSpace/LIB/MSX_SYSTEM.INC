@@ -153,7 +153,7 @@ constant ENASCR($0044) //  Function: Enable Screen Display
                        // Available: MSX
 
 constant WRTVDP($0047) //  Function: Write Data To VDP Register
-                       //     Input: C = VDP Register Number (0..23, 32..46), B = Data To Write
+                       //     Input: C = VDP Register Number (0..27, 32..46), B = Data To Write
                        //    Output: NONE
                        // Registers: AF, BC
                        // Available: MSX (Call SUB-ROM Internally In Screen Modes 5..8)
@@ -1323,7 +1323,7 @@ constant  PUTVRM($0129) //  Function: Put Character On Text-Screen
                         // Available: MSX2
 
 constant WRTVDPB($012D) //  Function: Write Data To VDP Register (Same As WRTVDP In MAIN-ROM)
-                        //     Input: C = VDP Register Number (0..23, 32..46), B = Data To Write
+                        //     Input: C = VDP Register Number (0..27, 32..46), B = Data To Write
                         //    Output: NONE
                         // Registers: AF, BC
                         // Available: MSX2
