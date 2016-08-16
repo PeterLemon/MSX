@@ -5,9 +5,9 @@ fill $8000 // Set ROM Size (32KB)
 
 origin $0000
 base $4000 // Entry Point Of Code
-include "LIB\MSX.INC"        // Include MSX Definitions
-include "LIB\MSX_HEADER.ASM" // Include MSX ROM Header
-include "LIB\MSX_SYSTEM.INC" // Include MSX System Routines
+include "LIB/MSX.INC"        // Include MSX Definitions
+include "LIB/MSX_HEADER.ASM" // Include MSX ROM Header
+include "LIB/MSX_SYSTEM.INC" // Include MSX System Routines
 
 Start:
   // Set Screen Mode 0

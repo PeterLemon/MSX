@@ -5,8 +5,8 @@ fill $8000 // Set ROM Size (32KB)
 
 origin $0000
 base $4000 // Entry Point Of Code
-include "LIB\MSX_HEADER.ASM" // Include MSX ROM Header
-include "LIB\MSX_SYSTEM.INC" // Include MSX System Routines
+include "LIB/MSX_HEADER.ASM" // Include MSX ROM Header
+include "LIB/MSX_SYSTEM.INC" // Include MSX System Routines
 
 Start:
   ld hl,CHMSG // HL = Character Message Address
