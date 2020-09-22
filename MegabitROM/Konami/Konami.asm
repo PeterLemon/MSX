@@ -1,4 +1,4 @@
-// MSX Megabit ROM Konami No SCC (8Kb Banks) demo by krom (Peter Lemon):
+// MSX Megabit ROM Konami No SCC (8KB Banks) demo by krom (Peter Lemon):
 arch msx.cpu
 output "Konami.rom", create
 fill $40000 // Set ROM Size (256KB)
