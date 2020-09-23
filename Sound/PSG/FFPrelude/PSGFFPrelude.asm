@@ -94,11 +94,11 @@ LoopSong:
   call WRTPSG        // PSG Write Data (A = PSG Address, E = PSG Data)
 
   ld a,PSG_ENV_FINE_TUNE // A = PSG Channel Volume Envelope Period Fine Tune Address ($0B)
-  ld e,$FF               // A = PSG Channel Volume Envelope Period Fine Tune (Bits 0..7 Fine Tune = 256)
+  ld e,$03               // A = PSG Channel Volume Envelope Period Fine Tune (Bits 0..7 Fine Tune = 3)
   call WRTPSG            // PSG Write Data (A = PSG Address, E = PSG Data)
 
   ld a,PSG_ENV_COARSE_TUNE // A = PSG Channel Channel Volume Envelope Period Coarse Tune Address ($0C)
-  ld e,$A0                 // E = Channel Channel Volume Envelope Period Coarse Tune (Bits 0..7 Coarse Tune = 256)
+  ld e,$10                 // E = Channel Channel Volume Envelope Period Coarse Tune (Bits 0..7 Coarse Tune = 16)
   call WRTPSG              // PSG Write Data (A = PSG Address, E = PSG Data)
 
   ChannelPatternTone(A, 0, PeriodTable) // Channel A Tone Pattern Calculation: Channel, Key, Period Table
