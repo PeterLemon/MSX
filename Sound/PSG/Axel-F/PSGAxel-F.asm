@@ -109,11 +109,11 @@ call WRTPSG    // PSG Write Data (A = PSG Address, E = PSG Data)
 
 // Setup Channel A,B,C Tones
 ld a,PSG_MODE_VOL_A // A = PSG Channel A Mode/Volume Address ($08)
-ld e,$0F            // E = PSG Channel A Mode/Volume (Bit 4 Mode = 0, Bits 0..3 Volume = 15)
+ld e,$10            // E = PSG Channel A Mode/Volume (Bit 4 Mode = 1, Bits 0..3 Volume = 0)
 call WRTPSG         // PSG Write Data (A = PSG Address, E = PSG Data)
 
 ld a,PSG_MODE_VOL_B // A = PSG Channel B Mode/Volume Address ($09)
-ld e,$0F            // E = PSG Channel B Mode/Volume (Bit 4 Mode = 0, Bits 0..3 Volume = 15)
+ld e,$10            // E = PSG Channel B Mode/Volume (Bit 4 Mode = 1, Bits 0..3 Volume = 0)
 call WRTPSG         // PSG Write Data (A = PSG Address, E = PSG Data)
 
 ld a,PSG_MODE_VOL_C // A = PSG Channel C Mode/Volume Address ($0A)
@@ -125,6 +125,18 @@ StartSong:
   ld bc,$0000       // BC = 0 (Pattern Offset Index)
 
 LoopSong:
+  ld a,PSG_ENV_SHAPE // A = PSG Channel Volume Envelope Shape Address ($0D)
+  ld e,$08           // E = PSG Channel Volume Envelope Shape (Bits 0..3 Shape = 8)
+  call WRTPSG        // PSG Write Data (A = PSG Address, E = PSG Data)
+
+  ld a,PSG_ENV_FINE_TUNE // A = PSG Channel Volume Envelope Period Fine Tune Address ($0B)
+  ld e,$03               // A = PSG Channel Volume Envelope Period Fine Tune (Bits 0..7 Fine Tune = 3)
+  call WRTPSG            // PSG Write Data (A = PSG Address, E = PSG Data)
+
+  ld a,PSG_ENV_COARSE_TUNE // A = PSG Channel Channel Volume Envelope Period Coarse Tune Address ($0C)
+  ld e,$40                 // E = Channel Channel Volume Envelope Period Coarse Tune (Bits 0..7 Coarse Tune = 64)
+  call WRTPSG              // PSG Write Data (A = PSG Address, E = PSG Data)
+
   ChannelPatternTone(A, 0, PeriodTable) // Channel A Tone Pattern Calculation: Channel, Key, Period Table
   ChannelPatternTone(B, 1, PeriodTable) // Channel B Tone Pattern Calculation: Channel, Key, Period Table
   ChannelPatternTone(C, 2, PeriodTable) // Channel C Tone Pattern Calculation: Channel, Key, Period Table
