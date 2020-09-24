@@ -12,11 +12,11 @@
 # Y = - + - + - |
 #     2   4   8 | K = G - Y
 import struct
-RGB = open("Image.bin", "rb").read() # Big-Endian 24-Bit RGB888 Binary Image
+RGB = open("Flowers128x106.bin", "rb").read() # Big-Endian 24-Bit RGB888 Binary Image
 YJK = [] # 8-Bit YJK Binary Image (Maximum 19,268 Colors On Screen)
-width  = 256 # Image Width (Needs To Be A Multiple Of 4)
-height = 212 # Image Height
-header = True # Select To Append .S12/.SCC 7 Byte Header (True/False)
+width  = 128 # Image Width (Needs To Be A Multiple Of 4)
+height = 106 # Image Height
+header = False # Select To Append .S12/.SCC 7 Byte Header (True/False)
 
 # Header
 if header == True: # IF (header == True) Append 7 Byte Header
@@ -82,5 +82,5 @@ while i < len(RGB): # For Length Of RGB Data
 
     i += 12 # Increment Byte Count To Encode Next YJK 4 Dot Block
 
-with open('Image.s12', 'wb') as f:
+with open('Flowers128x106.s12', 'wb') as f:
     for b in YJK: f.write(struct.pack('B', b))

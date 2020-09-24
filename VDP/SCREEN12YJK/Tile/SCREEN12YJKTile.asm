@@ -1,6 +1,6 @@
-// MSX2+ Screen 12 YJK Demo by krom (Peter Lemon):
+// MSX2+ Screen 12 YJK Tile Demo by krom (Peter Lemon):
 arch msx.cpu
-output "SCREEN12YJK.rom", create
+output "SCREEN12YJKTile.rom", create
 fill $8000 // Set ROM Size (32KB)
 
 macro YJKTile(source, dest, width, height) { // YJK Color Tile Block Transfer From Memory To VRAM
@@ -27,7 +27,6 @@ macro YJKTile(source, dest, width, height) { // YJK Color Tile Block Transfer Fr
 
 origin $0000
 base $4000 // Entry Point Of Code
-include "LIB/MSX.INC"        // Include MSX Definitions
 include "LIB/MSX_HEADER.ASM" // Include MSX ROM Header
 include "LIB/MSX_SYSTEM.INC" // Include MSX System Routines
 
@@ -50,4 +49,4 @@ Start:
 Loop:
   jr Loop
 
-insert BGYJK, "Image128x106.s12" // Include BG YJK 128x106 Color Data (13568 Bytes)
+insert BGYJK, "Flowers128x106.s12" // Include BG YJK 128x106 Color Data (13568 Bytes)
