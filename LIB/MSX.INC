@@ -232,7 +232,7 @@ constant RG25SA($FFFA) // RG25SA - Mirror Of VDP Register 25 (Basic: VDP(26))   
 constant RG26SA($FFFB) // RG26SA - Mirror Of VDP Register 26 (Basic: VDP(27))                1B/RW
 constant RG27SA($FFFC) // RG27SA - Mirror Of VDP Register 27 (Basic: VDP(28))                1B/RW
 
-constant 2NDSEL($FFFF) // 2NDSEL - Secondary Slot Select (IF Slot Is Expanded) %DDCCBBAA:    1B/RW
+constant SEL2ND($FFFF) // SEL2ND - Secondary Slot Select (IF Slot Is Expanded) %DDCCBBAA:    1B/RW
                        // A = Page 0: Secondary Slot ($0000..$3FFF) (2-Bit)
                        // B = Page 1: Secondary Slot ($4000..$7FFF) (2-Bit)
                        // C = Page 2: Secondary Slot ($8000..$BFFF) (2-Bit)
