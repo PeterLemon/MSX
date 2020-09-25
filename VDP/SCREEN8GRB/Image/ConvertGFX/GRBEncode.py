@@ -1,4 +1,4 @@
-# MSX2 / MSX2+ / Turbo-R 24-Bit RGB -> 8-Bit GRB332 Screen 8 Image Encoder
+# MSX2 24-Bit RGB -> 8-Bit GRB332 Screen 8 Image Encoder
 import struct
 RGB = open("Moogle256x212.bin", "rb").read() # Big-Endian 24-Bit RGB888 Binary Image
 GRB = [] # 8-Bit GRB332 Binary Image (Maximum 256 Colors On Screen)

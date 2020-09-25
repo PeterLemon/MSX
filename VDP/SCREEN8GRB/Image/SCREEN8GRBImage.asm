@@ -1,4 +1,4 @@
-// MSX2+ Screen 8 GRB Image Demo by krom (Peter Lemon):
+// MSX2 Screen 8 GRB Image Demo by krom (Peter Lemon):
 arch msx.cpu
 output "SCREEN8GRBImage.rom", create
 fill $10000 // Set ROM Size (64KB)
