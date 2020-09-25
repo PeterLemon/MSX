@@ -2,7 +2,7 @@
 import struct
 RGB = open("Moogle256x212.bin", "rb").read() # Big-Endian 24-Bit RGB888 Binary Image
 GRB = [] # 8-Bit GRB332 Binary Image (Maximum 256 Colors On Screen)
-width  = 256 # Image Width (Needs To Be A Multiple Of 4)
+width  = 256 # Image Width
 height = 212 # Image Height
 header = False # Select To Append .SC8 7 Byte Header (True/False)
 
