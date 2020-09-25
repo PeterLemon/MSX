@@ -30,7 +30,7 @@ while i < len(RGB): # For Length Of RGB Data
 
     GRB.append((G3<<5) | (R3<<2) | B2) # Append Dot (1 Byte)
 
-    i += 3 # Increment Byte Count To Encode Next RGB332 Dot
+    i += 3 # Increment Byte Count To Encode Next GRB332 Dot
 
 with open('Moogle256x212.sc8', 'wb') as f:
     for b in GRB: f.write(struct.pack('B', b))
