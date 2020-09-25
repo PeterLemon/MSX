@@ -28,10 +28,10 @@ if header == True: # IF (header == True) Append 7 Byte Header
     YJK.append(0x00) # Byte 5: $00
     YJK.append(0x00) # Byte 6: $00
 
-# RGB -> YJK Encode
+# RGB888 -> YJK Encode
 i = 0 # Byte Counter
 while i < len(RGB): # For Length Of RGB Data
-    # For 4 * RGB Dots (12 Bytes) Encode 4 * YJK Dots (4 Bytes)
+    # For 4 * RGB888 Dots (12 Bytes) Encode 4 * YJK Dots (4 Bytes)
     R1 = struct.unpack('B', RGB[i:i+1]) # 1st Dot RGB Values
     G1 = struct.unpack('B', RGB[i+1:i+2])
     B1 = struct.unpack('B', RGB[i+2:i+3])
