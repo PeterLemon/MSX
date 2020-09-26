@@ -51,7 +51,7 @@ Start:
   // Copy BG YJK Color Data Part E To VRAM
   ld a,4       // A = Bank 4
   ld ($6000),a // Store Bank 4
-  ld hl,BGYJKD // HL = Memory Source Address
+  ld hl,BGYJKE // HL = Memory Source Address
   ld de,$7400  // DE = VRAM Destination Address
   ld bc,$2000  // BC = Data Length
   call LDIRVM  // CALL System Routine To Block Transfer From Memory To VRAM
@@ -59,7 +59,7 @@ Start:
   // Copy BG YJK Color Data Part F To VRAM
   ld a,5       // A = Bank 5
   ld ($6000),a // Store Bank 5
-  ld hl,BGYJKD // HL = Memory Source Address
+  ld hl,BGYJKF // HL = Memory Source Address
   ld de,$9400  // DE = VRAM Destination Address
   ld bc,$2000  // BC = Data Length
   call LDIRVM  // CALL System Routine To Block Transfer From Memory To VRAM
@@ -67,7 +67,7 @@ Start:
   // Copy BG YJK Color Data Part G To VRAM
   ld a,6       // A = Bank 6
   ld ($6000),a // Store Bank 6
-  ld hl,BGYJKD // HL = Memory Source Address
+  ld hl,BGYJKG // HL = Memory Source Address
   ld de,$B400  // DE = VRAM Destination Address
   ld bc,$2000  // BC = Data Length
   call LDIRVM  // CALL System Routine To Block Transfer From Memory To VRAM
