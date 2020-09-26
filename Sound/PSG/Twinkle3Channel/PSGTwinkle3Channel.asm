@@ -177,9 +177,9 @@ LoopSong:
   // 250 MS Delay (15 VSYNCS)
   ld d,15 // D = Count
   Wait:
-    halt // Power Down CPU Until An Interrupt Occurs
-    dec d
-    jr nz,Wait // Decrement Count (D--), IF (Count != 0) Wait
+    halt       // Power Down CPU Until An Interrupt Occurs
+    dec d      // Decrement Count (D--)
+    jr nz,Wait // IF (Count != 0) Wait
 
   inc bc // BC++ (Increment Song Offset)
 

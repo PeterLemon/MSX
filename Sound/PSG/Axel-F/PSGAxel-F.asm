@@ -148,9 +148,9 @@ LoopSong:
   // Delay (VSYNCS)
   ld d,MaxQuant/15 // D = Count
   Wait:
-    halt // Power Down CPU Until An Interrupt Occurs
-    dec d
-    jr nz,Wait // Decrement Count (D--), IF (Count != 0) Wait
+    halt       // Power Down CPU Until An Interrupt Occurs
+    dec d      // Decrement Count (D--)
+    jr nz,Wait // IF (Count != 0) Wait
 
   inc c                 // Increment Pattern Index Offset (LSB)
   ld a,c                // A = C (Pattern Index Offset)
