@@ -53,13 +53,13 @@ SETWRITE:
 //------------------------------------------------------------------------------------------
 NLDIRVM:
   ld a,(hl)     // A = Next Data Byte In Block To Copy
-  inc hl        // HL++ (Increment Memory Source Address)
-  out (c),a     // Write Data To VDP Port #0
-  dec de        // DE-- (Decrement Data Length)
+  inc hl        // Increment Memory Source Address (HL++)
+  out (c),a     // Write Data Byte To CPU Port #$98 (VDP Port #0)
+  dec de        // Decrement Data Length (DE--)
   ld a,0        // A = 0
-  cp e          // Compare E (Data Length LO Byte) To A (Zero)
+  cp e          // Compare Data Length LO Byte (E) To Zero (A)
   jr nz,NLDIRVM // IF (Data Length LO Byte != 0) Copy Block
-  cp d          // Compare D (Data Length HI Byte) To A (Zero)
+  cp d          // Compare Data Length HI Byte (D) To Zero (A)
   jr nz,NLDIRVM // IF (Data Length HI Byte != 0) Copy Block
   ret
 
